@@ -50,7 +50,7 @@ public:
   const unsigned pref_activate_mask = (1 << static_cast<int>(LOAD)) | (1 << static_cast<int>(PREFETCH));
 
   // prefetch stats
-  uint64_t pf_requested = 0, pf_issued = 0, pf_useful = 0, pf_useless = 0, pf_fill = 0;
+  uint64_t pf_requested = 0, pf_issued = 0, pf_useful = 0, pf_useless = 0, pf_fill = 0, pf_late=0;
 
   // queues
   champsim::delay_queue<PACKET> RQ{RQ_SIZE, HIT_LATENCY}, // read queue

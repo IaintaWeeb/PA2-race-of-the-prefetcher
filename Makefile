@@ -25,14 +25,14 @@ clean:
 	 find prefetcher/no -name \*.d -delete
 	 find prefetcher/no_instr -name \*.o -delete
 	 find prefetcher/no_instr -name \*.d -delete
-	 find prefetcher/ip_stride -name \*.o -delete
-	 find prefetcher/ip_stride -name \*.d -delete
+	 find prefetcher/ip_stride_throttling -name \*.o -delete
+	 find prefetcher/ip_stride_throttling -name \*.d -delete
 	 find branch/bimodal -name \*.o -delete
 	 find branch/bimodal -name \*.d -delete
 	 find btb/basic_btb -name \*.o -delete
 	 find btb/basic_btb -name \*.d -delete
 
-bin/champsim: $(patsubst %.cc,%.o,$(wildcard src/*.cc)) obj/repl_rreplacementDlru.a obj/pref_pprefetcherDno.a obj/pref_pprefetcherDno_instr.a obj/pref_pprefetcherDip_stride.a obj/bpred_bbranchDbimodal.a obj/btb_bbtbDbasic_btb.a
+bin/champsim: $(patsubst %.cc,%.o,$(wildcard src/*.cc)) obj/repl_rreplacementDlru.a obj/pref_pprefetcherDno.a obj/pref_pprefetcherDno_instr.a obj/pref_pprefetcherDip_stride_throttling.a obj/bpred_bbranchDbimodal.a obj/btb_bbtbDbasic_btb.a
 	$(CXX) $(LDFLAGS) -o $@ $^ $(LDLIBS)
 
 replacement/lru/%.o: CFLAGS += -Ireplacement/lru
@@ -56,10 +56,10 @@ obj/pref_pprefetcherDno_instr.a: $(patsubst %.cc,%.o,$(wildcard prefetcher/no_in
 	@mkdir -p $(dir $@)
 	ar -rcs $@ $^
 
-prefetcher/ip_stride/%.o: CFLAGS += -Iprefetcher/ip_stride
-prefetcher/ip_stride/%.o: CXXFLAGS += -Iprefetcher/ip_stride
-prefetcher/ip_stride/%.o: CXXFLAGS +=  -Dprefetcher_initialize=pref_pprefetcherDip_stride_initialize -Dprefetcher_cache_operate=pref_pprefetcherDip_stride_cache_operate -Dprefetcher_cache_fill=pref_pprefetcherDip_stride_cache_fill -Dprefetcher_cycle_operate=pref_pprefetcherDip_stride_cycle_operate -Dprefetcher_final_stats=pref_pprefetcherDip_stride_final_stats -Dl1d_prefetcher_initialize=pref_pprefetcherDip_stride_initialize -Dl2c_prefetcher_initialize=pref_pprefetcherDip_stride_initialize -Dllc_prefetcher_initialize=pref_pprefetcherDip_stride_initialize -Dl1d_prefetcher_operate=pref_pprefetcherDip_stride_cache_operate -Dl2c_prefetcher_operate=pref_pprefetcherDip_stride_cache_operate -Dllc_prefetcher_operate=pref_pprefetcherDip_stride_cache_operate -Dl1d_prefetcher_cache_fill=pref_pprefetcherDip_stride_cache_fill -Dl2c_prefetcher_cache_fill=pref_pprefetcherDip_stride_cache_fill -Dllc_prefetcher_cache_fill=pref_pprefetcherDip_stride_cache_fill -Dl1d_prefetcher_final_stats=pref_pprefetcherDip_stride_final_stats -Dl2c_prefetcher_final_stats=pref_pprefetcherDip_stride_final_stats -Dllc_prefetcher_final_stats=pref_pprefetcherDip_stride_final_stats
-obj/pref_pprefetcherDip_stride.a: $(patsubst %.cc,%.o,$(wildcard prefetcher/ip_stride/*.cc)) $(patsubst %.c,%.o,$(wildcard prefetcher/ip_stride/*.c))
+prefetcher/ip_stride_throttling/%.o: CFLAGS += -Iprefetcher/ip_stride_throttling
+prefetcher/ip_stride_throttling/%.o: CXXFLAGS += -Iprefetcher/ip_stride_throttling
+prefetcher/ip_stride_throttling/%.o: CXXFLAGS +=  -Dprefetcher_initialize=pref_pprefetcherDip_stride_throttling_initialize -Dprefetcher_cache_operate=pref_pprefetcherDip_stride_throttling_cache_operate -Dprefetcher_cache_fill=pref_pprefetcherDip_stride_throttling_cache_fill -Dprefetcher_cycle_operate=pref_pprefetcherDip_stride_throttling_cycle_operate -Dprefetcher_final_stats=pref_pprefetcherDip_stride_throttling_final_stats -Dl1d_prefetcher_initialize=pref_pprefetcherDip_stride_throttling_initialize -Dl2c_prefetcher_initialize=pref_pprefetcherDip_stride_throttling_initialize -Dllc_prefetcher_initialize=pref_pprefetcherDip_stride_throttling_initialize -Dl1d_prefetcher_operate=pref_pprefetcherDip_stride_throttling_cache_operate -Dl2c_prefetcher_operate=pref_pprefetcherDip_stride_throttling_cache_operate -Dllc_prefetcher_operate=pref_pprefetcherDip_stride_throttling_cache_operate -Dl1d_prefetcher_cache_fill=pref_pprefetcherDip_stride_throttling_cache_fill -Dl2c_prefetcher_cache_fill=pref_pprefetcherDip_stride_throttling_cache_fill -Dllc_prefetcher_cache_fill=pref_pprefetcherDip_stride_throttling_cache_fill -Dl1d_prefetcher_final_stats=pref_pprefetcherDip_stride_throttling_final_stats -Dl2c_prefetcher_final_stats=pref_pprefetcherDip_stride_throttling_final_stats -Dllc_prefetcher_final_stats=pref_pprefetcherDip_stride_throttling_final_stats
+obj/pref_pprefetcherDip_stride_throttling.a: $(patsubst %.cc,%.o,$(wildcard prefetcher/ip_stride_throttling/*.cc)) $(patsubst %.c,%.o,$(wildcard prefetcher/ip_stride_throttling/*.c))
 	@mkdir -p $(dir $@)
 	ar -rcs $@ $^
 
@@ -81,7 +81,7 @@ obj/btb_bbtbDbasic_btb.a: $(patsubst %.cc,%.o,$(wildcard btb/basic_btb/*.cc)) $(
 -include $(wildcard replacement/lru/*.d)
 -include $(wildcard prefetcher/no/*.d)
 -include $(wildcard prefetcher/no_instr/*.d)
--include $(wildcard prefetcher/ip_stride/*.d)
+-include $(wildcard prefetcher/ip_stride_throttling/*.d)
 -include $(wildcard branch/bimodal/*.d)
 -include $(wildcard btb/basic_btb/*.d)
 

@@ -252,8 +252,12 @@ bool CACHE::readlike_miss(PACKET& handle_pkt)
 
       // in case request is already returned, we should keep event_cycle
       mshr_entry->event_cycle = prior_event_cycle;
+
+      //Updating late prefetch counter
+      pf_late++;
     }
-  } else {
+  }
+  else {
     if (mshr_full)  // not enough MSHR resource
       return false; // TODO should we allow prefetches anyway if they will not
                     // be filled to this level?

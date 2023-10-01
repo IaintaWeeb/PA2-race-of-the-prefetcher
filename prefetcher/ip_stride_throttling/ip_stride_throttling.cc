@@ -1,13 +1,36 @@
 #include <algorithm>
 #include <array>
 #include <map>
-
+#include<bits/stdc++.h>
 #include "cache.h"
 
 //This is the initial value which would be changed 3 parameters: Accuracy, Lateness and Pollution
-int PREFETCH_DEGREE =2;
-int PREFETCH_DEGREE_min=1;
-int PREFETCH_DEGREE_max=7;
+int PREFETCH_DEGREE =4;
+int times_changed=0;
+
+//Dynamic control
+  //Prefetch degree boundation
+  int PREFETCH_DEGREE_min=1; //Wouldn't go below this
+  int PREFETCH_DEGREE_max=7; //Wouldn't go beyond this
+
+  //Parameter counters
+  double PF_Accuracy=50;    // (# of useful PF )/( # PF sent to memory)
+  double PF_Lateness=50;    // (# of useful PF )/( # PF sent to memory)
+  double PF_Pollution=50;   //  Got by some filter
+
+  //Parameter comparing values
+  double PF_Acc_hi=75;  //Accuracy
+  double PF_Acc_lo=40;
+  double PF_Late_TH=1;  //Lateness threshold
+  double PF_Pol_TH=0.5;   //Pollution threshold
+
+  //lookup table for aggressiveness
+  //Stride_LT[Accuracy][Latness][Pollution]
+  //0- not late/polluting   ||  1- late / polluting
+  //2-high , 1 - mid , 0-low 
+  int Stride_LT[3][2][2]={{{0,-1},{-1,-1}},
+                          {{0,-1},{+1,-1}},
+                          {{0,-1},{+1,+1}}};
 
 
 struct tracker_entry {
@@ -30,8 +53,15 @@ constexpr std::size_t TRACKER_WAYS = 4;
 std::map<CACHE*, lookahead_entry> lookahead;
 std::map<CACHE*, std::array<tracker_entry, TRACKER_SETS * TRACKER_WAYS>> trackers;
 
+double maxm(double a,double b){
+  if(a>b)return a;
+  return b;
+}
+
 void CACHE::prefetcher_initialize() { std::cout << NAME << " IP-based stride prefetcher" << std::endl; }
 
+
+//
 void CACHE::prefetcher_cycle_operate()
 {
   // If a lookahead is active
@@ -46,10 +76,27 @@ void CACHE::prefetcher_cycle_operate()
       if (success)
         lookahead[this] = {pf_address, stride, degree - 1};
       // If we fail, try again next cycle
-    } else {
+    } 
+    else {
       lookahead[this] = {};
     }
   }
+
+  //Dynamic control metrics for prefetching
+  PF_Accuracy=(100.0*pf_useful)/maxm(pf_useful+pf_useless,0.01);
+  PF_Lateness=(100*pf_late)/maxm(pf_useful,0.01);
+  PF_Pollution=100;
+
+  //determining index for lookup table depending on metrics comparison with thresholds;
+  int A=1,L=0,P=0;
+  if(PF_Accuracy<=PF_Acc_lo) A=0;
+  else if(PF_Accuracy<=PF_Acc_lo) A=2;
+  if(PF_Lateness>=PF_Late_TH) L=1;
+  if(PF_Pollution>=PF_Pol_TH) P=1;
+
+  //Updating prefetch degree
+  if(Stride_LT[A][L][P]!=0) times_changed++;
+  PREFETCH_DEGREE=min(max(PREFETCH_DEGREE+Stride_LT[A][L][P],PREFETCH_DEGREE_min),PREFETCH_DEGREE_max);
 }
 
 uint32_t CACHE::prefetcher_cache_operate(uint64_t addr, uint64_t ip, uint8_t cache_hit, uint8_t type, uint32_t metadata_in)
@@ -90,4 +137,7 @@ uint32_t CACHE::prefetcher_cache_fill(uint64_t addr, uint32_t set, uint32_t way,
   return metadata_in;
 }
 
-void CACHE::prefetcher_final_stats() {}
+void CACHE::prefetcher_final_stats() {
+
+    cout<<"DYNAMIC PREFETCHER STATS Times changed"<<times_changed<<"  final value: "<<PREFETCH_DEGREE<<endl;
+}
