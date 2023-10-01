@@ -1,0 +1,824 @@
+conda: command not found
+ishaan@ishaan-ASUS-TUF-Gaming-A15-FA506IC-FA566IC:~/Documents/GitHub/PA2-race-of-the-prefetcher$ chmod  + x config.sh
+chmod: cannot access 'x': No such file or directory
+ishaan@ishaan-ASUS-TUF-Gaming-A15-FA506IC-FA566IC:~/Documents/GitHub/PA2-race-of-the-prefetcher$ chmod  +x config.sh
+ishaan@ishaan-ASUS-TUF-Gaming-A15-FA506IC-FA566IC:~/Documents/GitHub/PA2-race-of-the-prefetcher$ ./config.sh champsim_confi
+.json
+Traceback (most recent call last):
+  File "/home/ishaan/Documents/GitHub/PA2-race-of-the-prefetcher/./config.sh", line 86, in <module>
+    with open(sys.argv[1]) as rfp:
+FileNotFoundError: [Errno 2] No such file or directory: 'champsim_confi.json'
+ishaan@ishaan-ASUS-TUF-Gaming-A15-FA506IC-FA566IC:~/Documents/GitHub/PA2-race-of-the-prefetcher$ ./config.sh champsim_config.json
+ishaan@ishaan-ASUS-TUF-Gaming-A15-FA506IC-FA566IC:~/Documents/GitHub/PA2-race-of-the-prefetcher$ make
+g++ -Wall -O3 -std=c++17 -Iinc -MMD -MP  -c -o src/cache.o src/cache.cc
+g++ -Wall -O3 -std=c++17 -Iinc -MMD -MP  -c -o src/core_inst.o src/core_inst.cc
+g++ -Wall -O3 -std=c++17 -Iinc -MMD -MP  -c -o src/dram_controller.o src/dram_controller.cc
+g++ -Wall -O3 -std=c++17 -Iinc -MMD -MP  -c -o src/main.o src/main.cc
+g++ -Wall -O3 -std=c++17 -Iinc -MMD -MP  -c -o src/ooo_cpu.o src/ooo_cpu.cc
+src/ooo_cpu.cc: In member function ‘void O3_CPU::init_instruction(ooo_model_instr)’:
+src/ooo_cpu.cc:112:21: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const size_t’ {aka ‘const long unsigned int’} [-Wsign-compare]
+  112 |   for (int i = 0; i < NUM_INSTR_SOURCES; i++) {
+      |                   ~~^~~~~~~~~~~~~~~~~~~
+src/ooo_cpu.cc:262:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const size_t’ {aka ‘const long unsigned int’} [-Wsign-compare]
+  262 |     for (int i = 0; i < NUM_INSTR_SOURCES; i++) {
+      |                     ~~^~~~~~~~~~~~~~~~~~~
+g++ -Wall -O3 -std=c++17 -Iinc -MMD -MP  -c -o src/ptw.o src/ptw.cc
+g++ -Wall -O3 -std=c++17 -Iinc -MMD -MP  -c -o src/tracereader.o src/tracereader.cc
+g++ -Wall -O3 -std=c++17 -Iinc -MMD -MP  -c -o src/vmem.o src/vmem.cc
+g++ -Wall -O3 -std=c++17 -Ireplacement/lru -Dinitialize_replacement=repl_rreplacementDlru_initialize -Dfind_victim=repl_rreplacementDlru_victim -Dupdate_replacement_state=repl_rreplacementDlru_update -Dreplacement_final_stats=repl_rreplacementDlru_final_stats -Iinc -MMD -MP  -c -o replacement/lru/lru.o replacement/lru/lru.cc
+ar -rcs obj/repl_rreplacementDlru.a replacement/lru/lru.o
+g++ -Wall -O3 -std=c++17 -Iprefetcher/no -Dprefetcher_initialize=pref_pprefetcherDno_initialize -Dprefetcher_cache_operate=pref_pprefetcherDno_cache_operate -Dprefetcher_cache_fill=pref_pprefetcherDno_cache_fill -Dprefetcher_cycle_operate=pref_pprefetcherDno_cycle_operate -Dprefetcher_final_stats=pref_pprefetcherDno_final_stats -Dl1d_prefetcher_initialize=pref_pprefetcherDno_initialize -Dl2c_prefetcher_initialize=pref_pprefetcherDno_initialize -Dllc_prefetcher_initialize=pref_pprefetcherDno_initialize -Dl1d_prefetcher_operate=pref_pprefetcherDno_cache_operate -Dl2c_prefetcher_operate=pref_pprefetcherDno_cache_operate -Dllc_prefetcher_operate=pref_pprefetcherDno_cache_operate -Dl1d_prefetcher_cache_fill=pref_pprefetcherDno_cache_fill -Dl2c_prefetcher_cache_fill=pref_pprefetcherDno_cache_fill -Dllc_prefetcher_cache_fill=pref_pprefetcherDno_cache_fill -Dl1d_prefetcher_final_stats=pref_pprefetcherDno_final_stats -Dl2c_prefetcher_final_stats=pref_pprefetcherDno_final_stats -Dllc_prefetcher_final_stats=pref_pprefetcherDno_final_stats -Iinc -MMD -MP  -c -o prefetcher/no/no.o prefetcher/no/no.cc
+ar -rcs obj/pref_pprefetcherDno.a prefetcher/no/no.o
+g++ -Wall -O3 -std=c++17 -Iprefetcher/no_instr -Dprefetcher_initialize=pref_pprefetcherDno_instr_initialize -Dprefetcher_branch_operate=pref_pprefetcherDno_instr_branch_operate -Dprefetcher_cache_operate=pref_pprefetcherDno_instr_cache_operate -Dprefetcher_cycle_operate=pref_pprefetcherDno_instr_cycle_operate -Dprefetcher_cache_fill=pref_pprefetcherDno_instr_cache_fill -Dprefetcher_final_stats=pref_pprefetcherDno_instr_final_stats -Dl1i_prefetcher_initialize=pref_pprefetcherDno_instr_initialize -Dl1i_prefetcher_branch_operate=pref_pprefetcherDno_instr_branch_operate -Dl1i_prefetcher_cache_operate=pref_pprefetcherDno_instr_cache_operate -Dl1i_prefetcher_cycle_operate=pref_pprefetcherDno_instr_cycle_operate -Dl1i_prefetcher_cache_fill=pref_pprefetcherDno_instr_cache_fill -Dl1i_prefetcher_final_stats=pref_pprefetcherDno_instr_final_stats -Iinc -MMD -MP  -c -o prefetcher/no_instr/no.o prefetcher/no_instr/no.cc
+ar -rcs obj/pref_pprefetcherDno_instr.a prefetcher/no_instr/no.o
+g++ -Wall -O3 -std=c++17 -Ibranch/bimodal -Dinitialize_branch_predictor=bpred_bbranchDbimodal_initialize -Dlast_branch_result=bpred_bbranchDbimodal_last_result -Dpredict_branch=bpred_bbranchDbimodal_predict -Iinc -MMD -MP  -c -o branch/bimodal/bimodal.o branch/bimodal/bimodal.cc
+ar -rcs obj/bpred_bbranchDbimodal.a branch/bimodal/bimodal.o
+g++ -Wall -O3 -std=c++17 -Ibtb/basic_btb -Dinitialize_btb=btb_bbtbDbasic_btb_initialize -Dupdate_btb=btb_bbtbDbasic_btb_update -Dbtb_prediction=btb_bbtbDbasic_btb_predict -Iinc -MMD -MP  -c -o btb/basic_btb/basic_btb.o btb/basic_btb/basic_btb.cc
+ar -rcs obj/btb_bbtbDbasic_btb.a btb/basic_btb/basic_btb.o
+g++  -o bin/champsim src/cache.o src/core_inst.o src/dram_controller.o src/main.o src/ooo_cpu.o src/ptw.o src/tracereader.o src/vmem.o obj/repl_rreplacementDlru.a obj/pref_pprefetcherDno.a obj/pref_pprefetcherDno_instr.a obj/bpred_bbranchDbimodal.a obj/btb_bbtbDbasic_btb.a 
+ishaan@ishaan-ASUS-TUF-Gaming-A15-FA506IC-FA566IC:~/Documents/GitHub/PA2-race-of-the-prefetcher$ $ bin/champsim --warmup_instructions 200000000 --simulation_instructions 500000000 ~/path/to/traces/600.perlbench_s-210B.champsimtrace.xz
+$: command not found
+ishaan@ishaan-ASUS-TUF-Gaming-A15-FA506IC-FA566IC:~/Documents/GitHub/PA2-race-of-the-prefetcher$ bin/champsim --warmup_inst
+ructions 200000000 --simulation_instructions 500000000 ~/path/to/traces/600.perlbench_s-210B.champsimtrace.xz
+
+*** ChampSim Multicore Out-of-Order Simulator ***
+
+Warmup Instructions: 200000000
+Simulation Instructions: 500000000
+Number of CPUs: 1
+Off-chip DRAM Size: 4 GiB Channels: 1 Width: 64-bit Data Rate: 3200 MT/s
+
+VirtualMemory physical capacity: 8588881920 num_ppages: 2096895
+VirtualMemory page size: 4096 log2_page_size: 12
+
+CPU 0 runs /home/ishaan/path/to/traces/600.perlbench_s-210B.champsimtrace.xz
+TRACE FILE NOT FOUND
+champsim: src/tracereader.cc:43: tracereader::tracereader(uint8_t, std::string): Assertion `0' failed.
+Aborted (core dumped)
+ishaan@ishaan-ASUS-TUF-Gaming-A15-FA506IC-FA566IC:~/Documents/GitHub/PA2-race-of-the-prefetcher$ $ bin/champsim --warmup_instructions 200000000 --simulation_instructions 500000000 /home/ishaan/Documents/GitHub/pa2 files_s-210B.champsimtrace.xz
+$: command not found
+ishaan@ishaan-ASUS-TUF-Gaming-A15-FA506IC-FA566IC:~/Documents/GitHub/PA2-race-of-the-prefetcher$ bin/champsim --warmup_inst
+ructions 200000000 --simulation_instructions 500000000 /home/ishaan/Documents/GitHub/pa2 files_s-210B.champsimtrace.xz
+
+*** ChampSim Multicore Out-of-Order Simulator ***
+
+Warmup Instructions: 200000000
+Simulation Instructions: 500000000
+Number of CPUs: 1
+Off-chip DRAM Size: 4 GiB Channels: 1 Width: 64-bit Data Rate: 3200 MT/s
+
+VirtualMemory physical capacity: 8588881920 num_ppages: 2096895
+VirtualMemory page size: 4096 log2_page_size: 12
+
+CPU 0 runs /home/ishaan/Documents/GitHub/pa2
+terminate called after throwing an instance of 'std::out_of_range'
+  what():  basic_string::substr: __pos (which is 18446744073709551615) > this->size() (which is 33)
+Aborted (core dumped)
+ishaan@ishaan-ASUS-TUF-Gaming-A15-FA506IC-FA566IC:~/Documents/GitHub/PA2-race-of-the-prefetcher$ bin/champsim --warmup_instructions 200000000 --simulation_instructions 500000000 /home/ishaan/Documents/GitHub/pa2_files_s-210B.champsimtrace.xz
+
+*** ChampSim Multicore Out-of-Order Simulator ***
+
+Warmup Instructions: 200000000
+Simulation Instructions: 500000000
+Number of CPUs: 1
+Off-chip DRAM Size: 4 GiB Channels: 1 Width: 64-bit Data Rate: 3200 MT/s
+
+VirtualMemory physical capacity: 8588881920 num_ppages: 2096895
+VirtualMemory page size: 4096 log2_page_size: 12
+
+CPU 0 runs /home/ishaan/Documents/GitHub/pa2_files_s-210B.champsimtrace.xz
+TRACE FILE NOT FOUND
+champsim: src/tracereader.cc:43: tracereader::tracereader(uint8_t, std::string): Assertion `0' failed.
+Aborted (core dumped)
+ishaan@ishaan-ASUS-TUF-Gaming-A15-FA506IC-FA566IC:~/Documents/GitHub/PA2-race-of-the-prefetcher$ bin/champsim --warmup_instructions 200000000 --simulation_instructions 500000000 /home/ishaan/Documents/GitHub/pa2 files/619.lbm_s-2677B.champsimtrace.xz
+
+*** ChampSim Multicore Out-of-Order Simulator ***
+
+Warmup Instructions: 200000000
+Simulation Instructions: 500000000
+Number of CPUs: 1
+Off-chip DRAM Size: 4 GiB Channels: 1 Width: 64-bit Data Rate: 3200 MT/s
+
+VirtualMemory physical capacity: 8588881920 num_ppages: 2096895
+VirtualMemory page size: 4096 log2_page_size: 12
+
+CPU 0 runs /home/ishaan/Documents/GitHub/pa2
+terminate called after throwing an instance of 'std::out_of_range'
+  what():  basic_string::substr: __pos (which is 18446744073709551615) > this->size() (which is 33)
+Aborted (core dumped)
+ishaan@ishaan-ASUS-TUF-Gaming-A15-FA506IC-FA566IC:~/Documents/GitHub/PA2-race-of-the-prefetcher$ bin/champsim --warmup_instructions 200000000 --simulation_instructions 500000000 /home/ishaan/Documents/GitHub/pa2_files/619.lbm_s-2677B.champsimtrac
+e.xz
+
+*** ChampSim Multicore Out-of-Order Simulator ***
+
+Warmup Instructions: 200000000
+Simulation Instructions: 500000000
+Number of CPUs: 1
+Off-chip DRAM Size: 4 GiB Channels: 1 Width: 64-bit Data Rate: 3200 MT/s
+
+VirtualMemory physical capacity: 8588881920 num_ppages: 2096895
+VirtualMemory page size: 4096 log2_page_size: 12
+
+CPU 0 runs /home/ishaan/Documents/GitHub/pa2_files/619.lbm_s-2677B.champsimtrace.xz
+TRACE FILE NOT FOUND
+champsim: src/tracereader.cc:43: tracereader::tracereader(uint8_t, std::string): Assertion `0' failed.
+Aborted (core dumped)
+ishaan@ishaan-ASUS-TUF-Gaming-A15-FA506IC-FA566IC:~/Documents/GitHub/PA2-race-of-the-prefetcher$ bin/champsim --warmup_instructions 200000000 --simulation_instructions 500000000 home/ishaan/Documents/GitHub/pa2_files/619.lbm_s-2677B.champsimtrace
+.xz
+
+*** ChampSim Multicore Out-of-Order Simulator ***
+
+Warmup Instructions: 200000000
+Simulation Instructions: 500000000
+Number of CPUs: 1
+Off-chip DRAM Size: 4 GiB Channels: 1 Width: 64-bit Data Rate: 3200 MT/s
+
+VirtualMemory physical capacity: 8588881920 num_ppages: 2096895
+VirtualMemory page size: 4096 log2_page_size: 12
+
+CPU 0 runs home/ishaan/Documents/GitHub/pa2_files/619.lbm_s-2677B.champsimtrace.xz
+TRACE FILE NOT FOUND
+champsim: src/tracereader.cc:43: tracereader::tracereader(uint8_t, std::string): Assertion `0' failed.
+Aborted (core dumped)
+ishaan@ishaan-ASUS-TUF-Gaming-A15-FA506IC-FA566IC:~/Documents/GitHub/PA2-race-of-the-prefetcher$ bin/champsim --warmup_instructions 200000000 --simulation_instructions 500000000 /home/ishaan/Documents/GitHub/pa2_files/619.lbm_s-2677B.champsimtrace.xz
+
+*** ChampSim Multicore Out-of-Order Simulator ***
+
+Warmup Instructions: 200000000
+Simulation Instructions: 500000000
+Number of CPUs: 1
+Off-chip DRAM Size: 4 GiB Channels: 1 Width: 64-bit Data Rate: 3200 MT/s
+
+VirtualMemory physical capacity: 8588881920 num_ppages: 2096895
+VirtualMemory page size: 4096 log2_page_size: 12
+
+CPU 0 runs /home/ishaan/Documents/GitHub/pa2_files/619.lbm_s-2677B.champsimtrace.xz
+TRACE FILE NOT FOUND
+champsim: src/tracereader.cc:43: tracereader::tracereader(uint8_t, std::string): Assertion `0' failed.
+Aborted (core dumped)
+ishaan@ishaan-ASUS-TUF-Gaming-A15-FA506IC-FA566IC:~/Documents/GitHub/PA2-race-of-the-prefetcher$ bin/champsim --warmup_instructions 200000000 --simulation_instructions 500000000 ~/home/ishaan/Documents/GitHub/pa2_files/619.lbm_s-2677B.champsimtra
+ce.xz
+
+*** ChampSim Multicore Out-of-Order Simulator ***
+
+Warmup Instructions: 200000000
+Simulation Instructions: 500000000
+Number of CPUs: 1
+Off-chip DRAM Size: 4 GiB Channels: 1 Width: 64-bit Data Rate: 3200 MT/s
+
+VirtualMemory physical capacity: 8588881920 num_ppages: 2096895
+VirtualMemory page size: 4096 log2_page_size: 12
+
+CPU 0 runs /home/ishaan/home/ishaan/Documents/GitHub/pa2_files/619.lbm_s-2677B.champsimtrace.xz
+TRACE FILE NOT FOUND
+champsim: src/tracereader.cc:43: tracereader::tracereader(uint8_t, std::string): Assertion `0' failed.
+Aborted (core dumped)
+ishaan@ishaan-ASUS-TUF-Gaming-A15-FA506IC-FA566IC:~/Documents/GitHub/PA2-race-of-the-prefetcher$ cd _
+bash: cd: _: No such file or directory
+ishaan@ishaan-ASUS-TUF-Gaming-A15-FA506IC-FA566IC:~/Documents/GitHub/PA2-race-of-the-prefetcher$ cd -
+bash: cd: OLDPWD not set
+ishaan@ishaan-ASUS-TUF-Gaming-A15-FA506IC-FA566IC:~/Documents/GitHub/PA2-race-of-the-prefetcher$ cd ~
+ishaan@ishaan-ASUS-TUF-Gaming-A15-FA506IC-FA566IC:~$ ls
+ anaconda3    'CS Minor courses'   gem5-bootcamp-env                            home       Templates
+ anaconda.sh   Desktop             gem5-gpu                                     Music      untitled.grc
+ BIswa         Documents           GitHubDesktop-linux-3.2.0-linux1.deb         Pictures   untitled.py
+ Codingggg     Downloads           GitHubDesktop-linux-amd64-3.2.7-linux2.deb   Public     Videos
+ Core          gem5                GNU                                          snap
+ishaan@ishaan-ASUS-TUF-Gaming-A15-FA506IC-FA566IC:~$ cd Documents
+ishaan@ishaan-ASUS-TUF-Gaming-A15-FA506IC-FA566IC:~/Documents$ cd Github
+bash: cd: Github: No such file or directory
+ishaan@ishaan-ASUS-TUF-Gaming-A15-FA506IC-FA566IC:~/Documents$ ls
+ GitHub                    'WhatsApp Image 2023-07-21 at 1.00.27 PM.jpeg.pdf'
+ itsp-certificate.png.pdf  'WhatsApp Image 2023-07-21 at 12.46.35 PM.jpeg.pdf'
+ishaan@ishaan-ASUS-TUF-Gaming-A15-FA506IC-FA566IC:~/Documents$ cd GitHub
+ishaan@ishaan-ASUS-TUF-Gaming-A15-FA506IC-FA566IC:~/Documents/GitHub$ PA2-race-of-the-prefetcher/bin/champsim --warmup_inst
+ructions 200000000 --simulation_instructions 500000000 /pa2_files/619.lbm_s-2677B.champsimtrace.xz
+
+*** ChampSim Multicore Out-of-Order Simulator ***
+
+Warmup Instructions: 200000000
+Simulation Instructions: 500000000
+Number of CPUs: 1
+Off-chip DRAM Size: 4 GiB Channels: 1 Width: 64-bit Data Rate: 3200 MT/s
+
+VirtualMemory physical capacity: 8588881920 num_ppages: 2096895
+VirtualMemory page size: 4096 log2_page_size: 12
+
+CPU 0 runs /pa2_files/619.lbm_s-2677B.champsimtrace.xz
+TRACE FILE NOT FOUND
+champsim: src/tracereader.cc:43: tracereader::tracereader(uint8_t, std::string): Assertion `0' failed.
+Aborted (core dumped)
+ishaan@ishaan-ASUS-TUF-Gaming-A15-FA506IC-FA566IC:~/Documents/GitHub$ PA2-race-of-the-prefetcher/bin/champsim --warmup_instructions 200000000 --simulation_instructions 500000000 pa2_files/619.lbm_s-2677B.champsimtrace.xz
+
+*** ChampSim Multicore Out-of-Order Simulator ***
+
+Warmup Instructions: 200000000
+Simulation Instructions: 500000000
+Number of CPUs: 1
+Off-chip DRAM Size: 4 GiB Channels: 1 Width: 64-bit Data Rate: 3200 MT/s
+
+VirtualMemory physical capacity: 8588881920 num_ppages: 2096895
+VirtualMemory page size: 4096 log2_page_size: 12
+
+CPU 0 runs pa2_files/619.lbm_s-2677B.champsimtrace.xz
+TRACE FILE NOT FOUND
+champsim: src/tracereader.cc:43: tracereader::tracereader(uint8_t, std::string): Assertion `0' failed.
+Aborted (core dumped)
+ishaan@ishaan-ASUS-TUF-Gaming-A15-FA506IC-FA566IC:~/Documents/GitHub$ PA2-race-of-the-prefetcher/bin/champsim --warmup_instructions 200000000 --simulation_instructions 500000000 pa2_files/619.lbm_s-2677B.champsimtrace.xz
+
+*** ChampSim Multicore Out-of-Order Simulator ***
+
+Warmup Instructions: 200000000
+Simulation Instructions: 500000000
+Number of CPUs: 1
+Off-chip DRAM Size: 4 GiB Channels: 1 Width: 64-bit Data Rate: 3200 MT/s
+
+VirtualMemory physical capacity: 8588881920 num_ppages: 2096895
+VirtualMemory page size: 4096 log2_page_size: 12
+
+CPU 0 runs pa2_files/619.lbm_s-2677B.champsimtrace.xz
+CPU 0 Bimodal branch predictor
+Basic BTB sets: 1024 ways: 8 indirect buffer size: 4096 RAS size: 64
+Heartbeat CPU 0 instructions: 10000001 cycles: 2592619 heartbeat IPC: 3.8571 cumulative IPC: 3.8571 (Simulation time: 0 hr 0 min 17 sec) 
+Heartbeat CPU 0 instructions: 20000001 cycles: 5180832 heartbeat IPC: 3.86367 cumulative IPC: 3.86038 (Simulation time: 0 hr 0 min 33 sec) 
+Heartbeat CPU 0 instructions: 30000001 cycles: 7772973 heartbeat IPC: 3.85781 cumulative IPC: 3.85953 (Simulation time: 0 hr 0 min 50 sec) 
+Heartbeat CPU 0 instructions: 40000002 cycles: 10359150 heartbeat IPC: 3.86671 cumulative IPC: 3.86132 (Simulation time: 0 hr 1 min 7 sec) 
+Heartbeat CPU 0 instructions: 50000003 cycles: 12950914 heartbeat IPC: 3.85838 cumulative IPC: 3.86073 (Simulation time: 0 hr 1 min 23 sec) 
+Heartbeat CPU 0 instructions: 60000000 cycles: 15540892 heartbeat IPC: 3.86104 cumulative IPC: 3.86078 (Simulation time: 0 hr 1 min 40 sec) 
+Heartbeat CPU 0 instructions: 70000000 cycles: 18124923 heartbeat IPC: 3.86992 cumulative IPC: 3.86209 (Simulation time: 0 hr 1 min 57 sec) 
+Heartbeat CPU 0 instructions: 80000002 cycles: 20719873 heartbeat IPC: 3.85364 cumulative IPC: 3.86103 (Simulation time: 0 hr 2 min 14 sec) 
+Heartbeat CPU 0 instructions: 90000002 cycles: 23315483 heartbeat IPC: 3.85266 cumulative IPC: 3.8601 (Simulation time: 0 hr 2 min 30 sec) 
+Heartbeat CPU 0 instructions: 100000002 cycles: 25909700 heartbeat IPC: 3.85473 cumulative IPC: 3.85956 (Simulation time: 0 hr 2 min 47 sec) 
+Heartbeat CPU 0 instructions: 110000003 cycles: 28509257 heartbeat IPC: 3.84681 cumulative IPC: 3.8584 (Simulation time: 0 hr 3 min 4 sec) 
+Heartbeat CPU 0 instructions: 120000001 cycles: 31104822 heartbeat IPC: 3.85273 cumulative IPC: 3.85792 (Simulation time: 0 hr 3 min 21 sec) 
+Heartbeat CPU 0 instructions: 130000000 cycles: 33703911 heartbeat IPC: 3.8475 cumulative IPC: 3.85712 (Simulation time: 0 hr 3 min 38 sec) 
+Heartbeat CPU 0 instructions: 140000002 cycles: 36302261 heartbeat IPC: 3.8486 cumulative IPC: 3.85651 (Simulation time: 0 hr 3 min 55 sec) 
+Heartbeat CPU 0 instructions: 150000003 cycles: 38901297 heartbeat IPC: 3.84758 cumulative IPC: 3.85591 (Simulation time: 0 hr 4 min 13 sec) 
+Heartbeat CPU 0 instructions: 160000002 cycles: 41494671 heartbeat IPC: 3.85598 cumulative IPC: 3.85592 (Simulation time: 0 hr 4 min 29 sec) 
+Heartbeat CPU 0 instructions: 170000004 cycles: 44085771 heartbeat IPC: 3.85937 cumulative IPC: 3.85612 (Simulation time: 0 hr 4 min 46 sec) 
+Heartbeat CPU 0 instructions: 180000001 cycles: 46673162 heartbeat IPC: 3.8649 cumulative IPC: 3.85661 (Simulation time: 0 hr 5 min 3 sec) 
+Heartbeat CPU 0 instructions: 190000002 cycles: 49263431 heartbeat IPC: 3.8606 cumulative IPC: 3.85682 (Simulation time: 0 hr 5 min 20 sec) 
+Heartbeat CPU 0 instructions: 200000001 cycles: 51855205 heartbeat IPC: 3.85836 cumulative IPC: 3.85689 (Simulation time: 0 hr 5 min 37 sec) 
+
+Warmup complete CPU 0 instructions: 200000001 cycles: 51855205 (Simulation time: 0 hr 5 min 37 sec) 
+
+Heartbeat CPU 0 instructions: 210000000 cycles: 98722908 heartbeat IPC: 0.213367 cumulative IPC: 0.213367 (Simulation time: 0 hr 7 min 41 sec) 
+Heartbeat CPU 0 instructions: 220000000 cycles: 146915004 heartbeat IPC: 0.207503 cumulative IPC: 0.210394 (Simulation time: 0 hr 9 min 50 sec) 
+Heartbeat CPU 0 instructions: 230000003 cycles: 195532964 heartbeat IPC: 0.205685 cumulative IPC: 0.208801 (Simulation time: 0 hr 12 min 0 sec) 
+Heartbeat CPU 0 instructions: 240000004 cycles: 245871532 heartbeat IPC: 0.198655 cumulative IPC: 0.206168 (Simulation time: 0 hr 14 min 14 sec) 
+Heartbeat CPU 0 instructions: 250000000 cycles: 295594706 heartbeat IPC: 0.201113 cumulative IPC: 0.205137 (Simulation time: 0 hr 16 min 27 sec) 
+Heartbeat CPU 0 instructions: 260000002 cycles: 344759147 heartbeat IPC: 0.203399 cumulative IPC: 0.204845 (Simulation time: 0 hr 18 min 38 sec) 
+Heartbeat CPU 0 instructions: 270000002 cycles: 393425522 heartbeat IPC: 0.205481 cumulative IPC: 0.204936 (Simulation time: 0 hr 20 min 47 sec) 
+Heartbeat CPU 0 instructions: 280000003 cycles: 440958128 heartbeat IPC: 0.210382 cumulative IPC: 0.205601 (Simulation time: 0 hr 22 min 53 sec) 
+Heartbeat CPU 0 instructions: 290000000 cycles: 487744516 heartbeat IPC: 0.213737 cumulative IPC: 0.206474 (Simulation time: 0 hr 24 min 57 sec) 
+Heartbeat CPU 0 instructions: 300000002 cycles: 534787083 heartbeat IPC: 0.212573 cumulative IPC: 0.207069 (Simulation time: 0 hr 27 min 2 sec) 
+^X
+^[^X^[^X^[^X^[
+^[^X^[
+^X
+^[x^[
+^[x^[
+^[x^[
+x
+x
+Q
+^CCaught signal: 2
+ishaan@ishaan-ASUS-TUF-Gaming-A15-FA506IC-FA566IC:~/Documents/GitHub$ ./config.sh champsim_config.json
+bash: ./config.sh: No such file or directory
+ishaan@ishaan-ASUS-TUF-Gaming-A15-FA506IC-FA566IC:~/Documents/GitHub$ PA2-race-of-the-prefetcher/bin/champsim --warmup_instructions 200000000 --simulation_instructions 25000000 pa2_files/619.lbm_s-2677B.champsimtrace.xz
+
+*** ChampSim Multicore Out-of-Order Simulator ***
+
+Warmup Instructions: 200000000
+Simulation Instructions: 25000000
+Number of CPUs: 1
+Off-chip DRAM Size: 4 GiB Channels: 1 Width: 64-bit Data Rate: 3200 MT/s
+
+VirtualMemory physical capacity: 8588881920 num_ppages: 2096895
+VirtualMemory page size: 4096 log2_page_size: 12
+
+CPU 0 runs pa2_files/619.lbm_s-2677B.champsimtrace.xz
+CPU 0 Bimodal branch predictor
+Basic BTB sets: 1024 ways: 8 indirect buffer size: 4096 RAS size: 64
+cpu0_L2C IP-based stride prefetcher
+WARNING: The extended signature CACHE::prefetch_line(ip, base_addr, pf_addr, fill_this_level, prefetch_metadata) is deprecated.
+WARNING: Use CACHE::prefetch_line(pf_addr, fill_this_level, prefetch_metadata) instead.
+Heartbeat CPU 0 instructions: 10000001 cycles: 2594276 heartbeat IPC: 3.85464 cumulative IPC: 3.85464 (Simulation time: 0 hr 0 min 17 sec) 
+Heartbeat CPU 0 instructions: 20000000 cycles: 5183880 heartbeat IPC: 3.86159 cumulative IPC: 3.85811 (Simulation time: 0 hr 0 min 34 sec) 
+^CCaught signal: 2
+ishaan@ishaan-ASUS-TUF-Gaming-A15-FA506IC-FA566IC:~/Documents/GitHub$ PA2-race-of-the-prefetcher/bin/champsim --warmup_instructions 25000000 --simulation_instructions 25000000 pa2_files/619.lbm_s-2677B.champsimtrace.
+xz
+
+*** ChampSim Multicore Out-of-Order Simulator ***
+
+Warmup Instructions: 25000000
+Simulation Instructions: 25000000
+Number of CPUs: 1
+Off-chip DRAM Size: 4 GiB Channels: 1 Width: 64-bit Data Rate: 3200 MT/s
+
+VirtualMemory physical capacity: 8588881920 num_ppages: 2096895
+VirtualMemory page size: 4096 log2_page_size: 12
+
+CPU 0 runs pa2_files/619.lbm_s-2677B.champsimtrace.xz
+CPU 0 Bimodal branch predictor
+Basic BTB sets: 1024 ways: 8 indirect buffer size: 4096 RAS size: 64
+cpu0_L2C IP-based stride prefetcher
+WARNING: The extended signature CACHE::prefetch_line(ip, base_addr, pf_addr, fill_this_level, prefetch_metadata) is deprecated.
+WARNING: Use CACHE::prefetch_line(pf_addr, fill_this_level, prefetch_metadata) instead.
+Heartbeat CPU 0 instructions: 10000001 cycles: 2594276 heartbeat IPC: 3.85464 cumulative IPC: 3.85464 (Simulation time: 0 hr 0 min 16 sec) 
+Heartbeat CPU 0 instructions: 20000000 cycles: 5183880 heartbeat IPC: 3.86159 cumulative IPC: 3.85811 (Simulation time: 0 hr 0 min 33 sec) 
+
+Warmup complete CPU 0 instructions: 25000001 cycles: 6478948 (Simulation time: 0 hr 0 min 41 sec) 
+
+Heartbeat CPU 0 instructions: 30000002 cycles: 30064494 heartbeat IPC: 0.401919 cumulative IPC: 0.211994 (Simulation time: 0 hr 1 min 42 sec) 
+Heartbeat CPU 0 instructions: 40000004 cycles: 77085256 heartbeat IPC: 0.212672 cumulative IPC: 0.212446 (Simulation time: 0 hr 3 min 44 sec) 
+Heartbeat CPU 0 instructions: 50000001 cycles: 125198630 heartbeat IPC: 0.207842 cumulative IPC: 0.21058 (Simulation time: 0 hr 5 min 49 sec) 
+Finished CPU 0 instructions: 25000000 cycles: 118719682 cumulative IPC: 0.21058 (Simulation time: 0 hr 5 min 49 sec) 
+
+ChampSim completed all CPUs
+
+Region of Interest Statistics
+
+CPU 0 cumulative IPC: 0.21058 instructions: 25000000 cycles: 118719682
+cpu0_DTLB TOTAL     ACCESS:    4451120  HIT:    4417073  MISS:      34047
+cpu0_DTLB LOAD      ACCESS:    1980789  HIT:    1976168  MISS:       4621
+cpu0_DTLB RFO       ACCESS:    2470331  HIT:    2440905  MISS:      29426
+cpu0_DTLB PREFETCH  ACCESS:          0  HIT:          0  MISS:          0
+cpu0_DTLB WRITEBACK ACCESS:          0  HIT:          0  MISS:          0
+cpu0_DTLB TRANSLATION ACCESS:          0  HIT:          0  MISS:          0
+cpu0_DTLB PREFETCH  REQUESTED:          0  ISSUED:          0  USEFUL:          0  USELESS:          0
+cpu0_DTLB AVERAGE MISS LATENCY: 522.574 cycles
+cpu0_ITLB TOTAL     ACCESS:     472110  HIT:     472110  MISS:          0
+cpu0_ITLB LOAD      ACCESS:     472110  HIT:     472110  MISS:          0
+cpu0_ITLB RFO       ACCESS:          0  HIT:          0  MISS:          0
+cpu0_ITLB PREFETCH  ACCESS:          0  HIT:          0  MISS:          0
+cpu0_ITLB WRITEBACK ACCESS:          0  HIT:          0  MISS:          0
+cpu0_ITLB TRANSLATION ACCESS:          0  HIT:          0  MISS:          0
+cpu0_ITLB PREFETCH  REQUESTED:          0  ISSUED:          0  USEFUL:          0  USELESS:          0
+cpu0_ITLB AVERAGE MISS LATENCY: -nan cycles
+cpu0_L1I TOTAL     ACCESS:     552177  HIT:     552177  MISS:          0
+cpu0_L1I LOAD      ACCESS:     552177  HIT:     552177  MISS:          0
+cpu0_L1I RFO       ACCESS:          0  HIT:          0  MISS:          0
+cpu0_L1I PREFETCH  ACCESS:          0  HIT:          0  MISS:          0
+cpu0_L1I WRITEBACK ACCESS:          0  HIT:          0  MISS:          0
+cpu0_L1I TRANSLATION ACCESS:          0  HIT:          0  MISS:          0
+cpu0_L1I PREFETCH  REQUESTED:          0  ISSUED:          0  USEFUL:          0  USELESS:          0
+cpu0_L1I AVERAGE MISS LATENCY: -nan cycles
+cpu0_STLB TOTAL     ACCESS:      34047  HIT:      15571  MISS:      18476
+cpu0_STLB LOAD      ACCESS:       4621  HIT:          0  MISS:       4621
+cpu0_STLB RFO       ACCESS:      29426  HIT:      15571  MISS:      13855
+cpu0_STLB PREFETCH  ACCESS:          0  HIT:          0  MISS:          0
+cpu0_STLB WRITEBACK ACCESS:          0  HIT:          0  MISS:          0
+cpu0_STLB TRANSLATION ACCESS:          0  HIT:          0  MISS:          0
+cpu0_STLB PREFETCH  REQUESTED:          0  ISSUED:          0  USEFUL:          0  USELESS:          0
+cpu0_STLB AVERAGE MISS LATENCY: 946.256 cycles
+cpu0_L1D TOTAL     ACCESS:    5917004  HIT:    3966428  MISS:    1950576
+cpu0_L1D LOAD      ACCESS:    1404530  HIT:    1108978  MISS:     295552
+cpu0_L1D RFO       ACCESS:    4494949  HIT:    2839934  MISS:    1655015
+cpu0_L1D PREFETCH  ACCESS:          0  HIT:          0  MISS:          0
+cpu0_L1D WRITEBACK ACCESS:          0  HIT:          0  MISS:          0
+cpu0_L1D TRANSLATION ACCESS:      17525  HIT:      17516  MISS:          9
+cpu0_L1D PREFETCH  REQUESTED:          0  ISSUED:          0  USEFUL:          0  USELESS:          0
+cpu0_L1D AVERAGE MISS LATENCY: 762.406 cycles
+cpu0_L2C TOTAL     ACCESS:    3811298  HIT:    2585333  MISS:    1225965
+cpu0_L2C LOAD      ACCESS:     295552  HIT:          3  MISS:     295549
+cpu0_L2C RFO       ACCESS:    1655014  HIT:     739720  MISS:     915294
+cpu0_L2C PREFETCH  ACCESS:     205682  HIT:     190626  MISS:      15056
+cpu0_L2C WRITEBACK ACCESS:    1655041  HIT:    1654984  MISS:         57
+cpu0_L2C TRANSLATION ACCESS:          9  HIT:          0  MISS:          9
+cpu0_L2C PREFETCH  REQUESTED:     287952  ISSUED:     230164  USEFUL:      14881  USELESS:        176
+cpu0_L2C AVERAGE MISS LATENCY: 1211.85 cycles
+LLC TOTAL     ACCESS:    2142694  HIT:     945456  MISS:    1197238
+LLC LOAD      ACCESS:     295549  HIT:          1  MISS:     295548
+LLC RFO       ACCESS:     915245  HIT:      28664  MISS:     886581
+LLC PREFETCH  ACCESS:      16463  HIT:       1407  MISS:      15056
+LLC WRITEBACK ACCESS:     915428  HIT:     915384  MISS:         44
+LLC TRANSLATION ACCESS:          9  HIT:          0  MISS:          9
+LLC PREFETCH  REQUESTED:          0  ISSUED:          0  USEFUL:          0  USELESS:          0
+LLC AVERAGE MISS LATENCY: 1221.66 cycles
+
+DRAM Statistics
+ CHANNEL 0
+ RQ ROW_BUFFER_HIT:      34618  ROW_BUFFER_MISS:    1162576
+ DBUS AVG_CONGESTED_CYCLE:    4.00313
+ WQ ROW_BUFFER_HIT:      15179  ROW_BUFFER_MISS:     871606  FULL:          0
+
+
+CPU 0 Branch Prediction Accuracy: 95.9842% MPKI: 0.71772 Average ROB Occupancy at Mispredict: 259.048
+Branch type MPKI
+BRANCH_DIRECT_JUMP: 0
+BRANCH_INDIRECT: 0
+BRANCH_CONDITIONAL: 0.71772
+BRANCH_DIRECT_CALL: 0
+BRANCH_INDIRECT_CALL: 0
+BRANCH_RETURN: 0
+
+ishaan@ishaan-ASUS-TUF-Gaming-A15-FA506IC-FA566IC:~/Documents/GitHub$ ^C
+ishaan@ishaan-ASUS-TUF-Gaming-A15-FA506IC-FA566IC:~/Documents/GitHub$ ^C
+ishaan@ishaan-ASUS-TUF-Gaming-A15-FA506IC-FA566IC:~/Documents/GitHub$ ^C
+ishaan@ishaan-ASUS-TUF-Gaming-A15-FA506IC-FA566IC:~/Documents/GitHub$ PA2-race-of-the-prefetcher/bin/champsim --warmup_instructions 200000000 --simulation_instructions 25000000 pa2_files/602.gcc_s-1850B.champsimtrace.xz
+
+*** ChampSim Multicore Out-of-Order Simulator ***
+
+Warmup Instructions: 200000000
+Simulation Instructions: 25000000
+Number of CPUs: 1
+Off-chip DRAM Size: 4 GiB Channels: 1 Width: 64-bit Data Rate: 3200 MT/s
+
+VirtualMemory physical capacity: 8588881920 num_ppages: 2096895
+VirtualMemory page size: 4096 log2_page_size: 12
+
+CPU 0 runs pa2_files/602.gcc_s-1850B.champsimtrace.xz
+CPU 0 Bimodal branch predictor
+Basic BTB sets: 1024 ways: 8 indirect buffer size: 4096 RAS size: 64
+cpu0_L2C IP-based stride prefetcher
+WARNING: The extended signature CACHE::prefetch_line(ip, base_addr, pf_addr, fill_this_level, prefetch_metadata) is deprecated.
+WARNING: Use CACHE::prefetch_line(pf_addr, fill_this_level, prefetch_metadata) instead.
+Heartbeat CPU 0 instructions: 10000001 cycles: 2500075 heartbeat IPC: 3.99988 cumulative IPC: 3.99988 (Simulation time: 0 hr 0 min 14 sec) 
+Heartbeat CPU 0 instructions: 20000001 cycles: 5000075 heartbeat IPC: 4 cumulative IPC: 3.99994 (Simulation time: 0 hr 0 min 27 sec) 
+Heartbeat CPU 0 instructions: 30000003 cycles: 7500106 heartbeat IPC: 3.99995 cumulative IPC: 3.99994 (Simulation time: 0 hr 0 min 41 sec) 
+Heartbeat CPU 0 instructions: 40000001 cycles: 10000075 heartbeat IPC: 4.00005 cumulative IPC: 3.99997 (Simulation time: 0 hr 0 min 54 sec) 
+Heartbeat CPU 0 instructions: 50000001 cycles: 12500075 heartbeat IPC: 4 cumulative IPC: 3.99998 (Simulation time: 0 hr 1 min 7 sec) 
+Heartbeat CPU 0 instructions: 60000001 cycles: 15000075 heartbeat IPC: 4 cumulative IPC: 3.99998 (Simulation time: 0 hr 1 min 21 sec) 
+Heartbeat CPU 0 instructions: 70000001 cycles: 17500075 heartbeat IPC: 4 cumulative IPC: 3.99998 (Simulation time: 0 hr 1 min 34 sec) 
+Heartbeat CPU 0 instructions: 80000001 cycles: 20000075 heartbeat IPC: 4 cumulative IPC: 3.99998 (Simulation time: 0 hr 1 min 48 sec) 
+Heartbeat CPU 0 instructions: 90000001 cycles: 22500075 heartbeat IPC: 4 cumulative IPC: 3.99999 (Simulation time: 0 hr 2 min 1 sec) 
+Heartbeat CPU 0 instructions: 100000001 cycles: 25000075 heartbeat IPC: 4 cumulative IPC: 3.99999 (Simulation time: 0 hr 2 min 15 sec) 
+Heartbeat CPU 0 instructions: 110000001 cycles: 27500075 heartbeat IPC: 4 cumulative IPC: 3.99999 (Simulation time: 0 hr 2 min 28 sec) 
+Heartbeat CPU 0 instructions: 120000001 cycles: 30000075 heartbeat IPC: 4 cumulative IPC: 3.99999 (Simulation time: 0 hr 2 min 42 sec) 
+Heartbeat CPU 0 instructions: 130000001 cycles: 32500075 heartbeat IPC: 4 cumulative IPC: 3.99999 (Simulation time: 0 hr 2 min 55 sec) 
+Heartbeat CPU 0 instructions: 140000001 cycles: 35000075 heartbeat IPC: 4 cumulative IPC: 3.99999 (Simulation time: 0 hr 3 min 9 sec) 
+Heartbeat CPU 0 instructions: 150000001 cycles: 37500075 heartbeat IPC: 4 cumulative IPC: 3.99999 (Simulation time: 0 hr 3 min 22 sec) 
+Heartbeat CPU 0 instructions: 160000001 cycles: 40000075 heartbeat IPC: 4 cumulative IPC: 3.99999 (Simulation time: 0 hr 3 min 36 sec) 
+Heartbeat CPU 0 instructions: 170000001 cycles: 42500075 heartbeat IPC: 4 cumulative IPC: 3.99999 (Simulation time: 0 hr 3 min 49 sec) 
+Heartbeat CPU 0 instructions: 180000001 cycles: 45000075 heartbeat IPC: 4 cumulative IPC: 3.99999 (Simulation time: 0 hr 4 min 3 sec) 
+Heartbeat CPU 0 instructions: 190000001 cycles: 47500075 heartbeat IPC: 4 cumulative IPC: 3.99999 (Simulation time: 0 hr 4 min 16 sec) 
+Heartbeat CPU 0 instructions: 200000001 cycles: 50000075 heartbeat IPC: 4 cumulative IPC: 3.99999 (Simulation time: 0 hr 4 min 30 sec) 
+
+Warmup complete CPU 0 instructions: 200000001 cycles: 50000075 (Simulation time: 0 hr 4 min 30 sec) 
+
+Heartbeat CPU 0 instructions: 210000000 cycles: 82417150 heartbeat IPC: 0.308479 cumulative IPC: 0.308479 (Simulation time: 0 hr 4 min 59 sec) 
+Heartbeat CPU 0 instructions: 220000000 cycles: 114912233 heartbeat IPC: 0.307739 cumulative IPC: 0.308109 (Simulation time: 0 hr 5 min 28 sec) 
+Finished CPU 0 instructions: 25000000 cycles: 81138342 cumulative IPC: 0.308116 (Simulation time: 0 hr 5 min 42 sec) 
+
+ChampSim completed all CPUs
+
+Region of Interest Statistics
+
+CPU 0 cumulative IPC: 0.308116 instructions: 25000000 cycles: 81138342
+cpu0_DTLB TOTAL     ACCESS:    4748292  HIT:    4739870  MISS:       8422
+cpu0_DTLB LOAD      ACCESS:    3938580  HIT:    3930160  MISS:       8420
+cpu0_DTLB RFO       ACCESS:     809712  HIT:     809710  MISS:          2
+cpu0_DTLB PREFETCH  ACCESS:          0  HIT:          0  MISS:          0
+cpu0_DTLB WRITEBACK ACCESS:          0  HIT:          0  MISS:          0
+cpu0_DTLB TRANSLATION ACCESS:          0  HIT:          0  MISS:          0
+cpu0_DTLB PREFETCH  REQUESTED:          0  ISSUED:          0  USEFUL:          0  USELESS:          0
+cpu0_DTLB AVERAGE MISS LATENCY: 201.441 cycles
+cpu0_ITLB TOTAL     ACCESS:    2857080  HIT:    2857080  MISS:          0
+cpu0_ITLB LOAD      ACCESS:    2857080  HIT:    2857080  MISS:          0
+cpu0_ITLB RFO       ACCESS:          0  HIT:          0  MISS:          0
+cpu0_ITLB PREFETCH  ACCESS:          0  HIT:          0  MISS:          0
+cpu0_ITLB WRITEBACK ACCESS:          0  HIT:          0  MISS:          0
+cpu0_ITLB TRANSLATION ACCESS:          0  HIT:          0  MISS:          0
+cpu0_ITLB PREFETCH  REQUESTED:          0  ISSUED:          0  USEFUL:          0  USELESS:          0
+cpu0_ITLB AVERAGE MISS LATENCY: -nan cycles
+cpu0_STLB TOTAL     ACCESS:       8422  HIT:        672  MISS:       7750
+cpu0_STLB LOAD      ACCESS:       8420  HIT:        672  MISS:       7748
+cpu0_STLB RFO       ACCESS:          2  HIT:          0  MISS:          2
+cpu0_STLB PREFETCH  ACCESS:          0  HIT:          0  MISS:          0
+cpu0_STLB WRITEBACK ACCESS:          0  HIT:          0  MISS:          0
+cpu0_STLB TRANSLATION ACCESS:          0  HIT:          0  MISS:          0
+cpu0_STLB PREFETCH  REQUESTED:          0  ISSUED:          0  USEFUL:          0  USELESS:          0
+cpu0_STLB AVERAGE MISS LATENCY: 209.127 cycles
+cpu0_L1D TOTAL     ACCESS:    5545186  HIT:    4942043  MISS:     603143
+cpu0_L1D LOAD      ACCESS:    3379566  HIT:    2777346  MISS:     602220
+cpu0_L1D RFO       ACCESS:    2157870  HIT:    2157726  MISS:        144
+cpu0_L1D PREFETCH  ACCESS:          0  HIT:          0  MISS:          0
+cpu0_L1D WRITEBACK ACCESS:          0  HIT:          0  MISS:          0
+cpu0_L1D TRANSLATION ACCESS:       7750  HIT:       6971  MISS:        779
+cpu0_L1D PREFETCH  REQUESTED:          0  ISSUED:          0  USEFUL:          0  USELESS:          0
+cpu0_L1D AVERAGE MISS LATENCY: 91.205 cycles
+cpu0_L2C TOTAL     ACCESS:    1464987  HIT:     977090  MISS:     487897
+cpu0_L2C LOAD      ACCESS:     602220  HIT:     157182  MISS:     445038
+cpu0_L2C RFO       ACCESS:        144  HIT:          0  MISS:        144
+cpu0_L2C PREFETCH  ACCESS:     860248  HIT:     817668  MISS:      42580
+cpu0_L2C WRITEBACK ACCESS:       1596  HIT:       1596  MISS:          0
+cpu0_L2C TRANSLATION ACCESS:        779  HIT:        644  MISS:        135
+cpu0_L2C PREFETCH  REQUESTED:     870848  ISSUED:     868511  USEFUL:      33925  USELESS:       8611
+cpu0_L2C AVERAGE MISS LATENCY: 118.662 cycles
+LLC TOTAL     ACCESS:     488557  HIT:       1697  MISS:     486860
+LLC LOAD      ACCESS:     445038  HIT:        647  MISS:     444391
+LLC RFO       ACCESS:        144  HIT:          0  MISS:        144
+LLC PREFETCH  ACCESS:      42580  HIT:        326  MISS:      42254
+LLC WRITEBACK ACCESS:        660  HIT:        660  MISS:          0
+LLC TRANSLATION ACCESS:        135  HIT:         64  MISS:         71
+LLC PREFETCH  REQUESTED:          0  ISSUED:          0  USEFUL:          0  USELESS:          0
+LLC AVERAGE MISS LATENCY: 97.8701 cycles
+
+DRAM Statistics
+ CHANNEL 0
+ RQ ROW_BUFFER_HIT:     333693  ROW_BUFFER_MISS:     153167
+ DBUS AVG_CONGESTED_CYCLE:    3.96061
+ WQ ROW_BUFFER_HIT:        395  ROW_BUFFER_MISS:        244  FULL:          0
+
+
+CPU 0 Branch Prediction Accuracy: 92.3649% MPKI: 19.576 Average ROB Occupancy at Mispredict: 33.4946
+Branch type MPKI
+BRANCH_DIRECT_JUMP: 0
+BRANCH_INDIRECT: 0
+BRANCH_CONDITIONAL: 19.576
+BRANCH_DIRECT_CALL: 0
+BRANCH_INDIRECT_CALL: 0
+BRANCH_RETURN: 0
+
+ishaan@ishaan-ASUS-TUF-Gaming-A15-FA506IC-FA566IC:~/Documents/GitHub$ ^C
+ishaan@ishaan-ASUS-TUF-Gaming-A15-FA506IC-FA566IC:~/Documents/GitHub$ PA2-race-of-the-prefetcher/bin/champsim --warmup_instructions 200000000 --simulation_instructions 25000000 pa2_files/603.bwaves_s-1740B.champsimtrace.xz
+
+*** ChampSim Multicore Out-of-Order Simulator ***
+
+Warmup Instructions: 200000000
+Simulation Instructions: 25000000
+Number of CPUs: 1
+Off-chip DRAM Size: 4 GiB Channels: 1 Width: 64-bit Data Rate: 3200 MT/s
+
+VirtualMemory physical capacity: 8588881920 num_ppages: 2096895
+VirtualMemory page size: 4096 log2_page_size: 12
+
+CPU 0 runs pa2_files/603.bwaves_s-1740B.champsimtrace.xz
+CPU 0 Bimodal branch predictor
+Basic BTB sets: 1024 ways: 8 indirect buffer size: 4096 RAS size: 64
+cpu0_L2C IP-based stride prefetcher
+WARNING: The extended signature CACHE::prefetch_line(ip, base_addr, pf_addr, fill_this_level, prefetch_metadata) is deprecated.
+WARNING: Use CACHE::prefetch_line(pf_addr, fill_this_level, prefetch_metadata) instead.
+Heartbeat CPU 0 instructions: 10000001 cycles: 3642288 heartbeat IPC: 2.74553 cumulative IPC: 2.74553 (Simulation time: 0 hr 0 min 23 sec) 
+Heartbeat CPU 0 instructions: 20000001 cycles: 7284434 heartbeat IPC: 2.74563 cumulative IPC: 2.74558 (Simulation time: 0 hr 0 min 46 sec) 
+Heartbeat CPU 0 instructions: 30000000 cycles: 10926563 heartbeat IPC: 2.74565 cumulative IPC: 2.7456 (Simulation time: 0 hr 1 min 9 sec) 
+Heartbeat CPU 0 instructions: 40000000 cycles: 14568701 heartbeat IPC: 2.74564 cumulative IPC: 2.74561 (Simulation time: 0 hr 1 min 32 sec) 
+Heartbeat CPU 0 instructions: 50000000 cycles: 18210847 heartbeat IPC: 2.74563 cumulative IPC: 2.74562 (Simulation time: 0 hr 1 min 55 sec) 
+Heartbeat CPU 0 instructions: 60000001 cycles: 21852979 heartbeat IPC: 2.74564 cumulative IPC: 2.74562 (Simulation time: 0 hr 2 min 18 sec) 
+Heartbeat CPU 0 instructions: 70000001 cycles: 25495116 heartbeat IPC: 2.74564 cumulative IPC: 2.74562 (Simulation time: 0 hr 2 min 41 sec) 
+Heartbeat CPU 0 instructions: 80000001 cycles: 29137239 heartbeat IPC: 2.74565 cumulative IPC: 2.74563 (Simulation time: 0 hr 3 min 4 sec) 
+Heartbeat CPU 0 instructions: 90000002 cycles: 32779383 heartbeat IPC: 2.74564 cumulative IPC: 2.74563 (Simulation time: 0 hr 3 min 27 sec) 
+Heartbeat CPU 0 instructions: 100000002 cycles: 36421524 heartbeat IPC: 2.74564 cumulative IPC: 2.74563 (Simulation time: 0 hr 3 min 50 sec) 
+Heartbeat CPU 0 instructions: 110000001 cycles: 40063671 heartbeat IPC: 2.74563 cumulative IPC: 2.74563 (Simulation time: 0 hr 4 min 12 sec) 
+Heartbeat CPU 0 instructions: 120000004 cycles: 43705804 heartbeat IPC: 2.74564 cumulative IPC: 2.74563 (Simulation time: 0 hr 4 min 35 sec) 
+Heartbeat CPU 0 instructions: 130000003 cycles: 47347956 heartbeat IPC: 2.74563 cumulative IPC: 2.74563 (Simulation time: 0 hr 4 min 58 sec) 
+Heartbeat CPU 0 instructions: 140000000 cycles: 50990081 heartbeat IPC: 2.74565 cumulative IPC: 2.74563 (Simulation time: 0 hr 5 min 21 sec) 
+Heartbeat CPU 0 instructions: 150000000 cycles: 54632220 heartbeat IPC: 2.74564 cumulative IPC: 2.74563 (Simulation time: 0 hr 5 min 44 sec) 
+Heartbeat CPU 0 instructions: 160000001 cycles: 58274353 heartbeat IPC: 2.74564 cumulative IPC: 2.74563 (Simulation time: 0 hr 6 min 7 sec) 
+Heartbeat CPU 0 instructions: 170000000 cycles: 61916493 heartbeat IPC: 2.74564 cumulative IPC: 2.74563 (Simulation time: 0 hr 6 min 30 sec) 
+Heartbeat CPU 0 instructions: 180000002 cycles: 65558625 heartbeat IPC: 2.74565 cumulative IPC: 2.74563 (Simulation time: 0 hr 6 min 52 sec) 
+Heartbeat CPU 0 instructions: 190000001 cycles: 69200752 heartbeat IPC: 2.74565 cumulative IPC: 2.74564 (Simulation time: 0 hr 7 min 15 sec) 
+Heartbeat CPU 0 instructions: 200000000 cycles: 72842900 heartbeat IPC: 2.74563 cumulative IPC: 2.74563 (Simulation time: 0 hr 7 min 39 sec) 
+
+Warmup complete CPU 0 instructions: 200000001 cycles: 72842901 (Simulation time: 0 hr 7 min 39 sec) 
+
+^CCaught signal: 2
+ishaan@ishaan-ASUS-TUF-Gaming-A15-FA506IC-FA566IC:~/Documents/GitHub$ PA2-race-of-the-prefetcher/bin/champsim --warmup_instructions 250000000 --simulation_instructions 25000000 pa2_files/603.bwaves_s-1740B.champsimtr
+ace.xz
+
+*** ChampSim Multicore Out-of-Order Simulator ***
+
+Warmup Instructions: 250000000
+Simulation Instructions: 25000000
+Number of CPUs: 1
+Off-chip DRAM Size: 4 GiB Channels: 1 Width: 64-bit Data Rate: 3200 MT/s
+
+VirtualMemory physical capacity: 8588881920 num_ppages: 2096895
+VirtualMemory page size: 4096 log2_page_size: 12
+
+CPU 0 runs pa2_files/603.bwaves_s-1740B.champsimtrace.xz
+CPU 0 Bimodal branch predictor
+Basic BTB sets: 1024 ways: 8 indirect buffer size: 4096 RAS size: 64
+cpu0_L2C IP-based stride prefetcher
+WARNING: The extended signature CACHE::prefetch_line(ip, base_addr, pf_addr, fill_this_level, prefetch_metadata) is deprecated.
+WARNING: Use CACHE::prefetch_line(pf_addr, fill_this_level, prefetch_metadata) instead.
+Heartbeat CPU 0 instructions: 10000001 cycles: 3642288 heartbeat IPC: 2.74553 cumulative IPC: 2.74553 (Simulation time: 0 hr 0 min 23 sec) 
+Heartbeat CPU 0 instructions: 20000001 cycles: 7284434 heartbeat IPC: 2.74563 cumulative IPC: 2.74558 (Simulation time: 0 hr 0 min 46 sec) 
+Heartbeat CPU 0 instructions: 30000000 cycles: 10926563 heartbeat IPC: 2.74565 cumulative IPC: 2.7456 (Simulation time: 0 hr 1 min 14 sec) 
+Heartbeat CPU 0 instructions: 40000000 cycles: 14568701 heartbeat IPC: 2.74564 cumulative IPC: 2.74561 (Simulation time: 0 hr 1 min 37 sec) 
+Heartbeat CPU 0 instructions: 50000000 cycles: 18210847 heartbeat IPC: 2.74563 cumulative IPC: 2.74562 (Simulation time: 0 hr 1 min 59 sec) 
+Heartbeat CPU 0 instructions: 60000001 cycles: 21852979 heartbeat IPC: 2.74564 cumulative IPC: 2.74562 (Simulation time: 0 hr 2 min 22 sec) 
+Heartbeat CPU 0 instructions: 70000001 cycles: 25495116 heartbeat IPC: 2.74564 cumulative IPC: 2.74562 (Simulation time: 0 hr 2 min 45 sec) 
+Heartbeat CPU 0 instructions: 80000001 cycles: 29137239 heartbeat IPC: 2.74565 cumulative IPC: 2.74563 (Simulation time: 0 hr 3 min 8 sec) 
+Heartbeat CPU 0 instructions: 90000002 cycles: 32779383 heartbeat IPC: 2.74564 cumulative IPC: 2.74563 (Simulation time: 0 hr 3 min 30 sec) 
+Heartbeat CPU 0 instructions: 100000002 cycles: 36421524 heartbeat IPC: 2.74564 cumulative IPC: 2.74563 (Simulation time: 0 hr 3 min 53 sec) 
+Heartbeat CPU 0 instructions: 110000001 cycles: 40063671 heartbeat IPC: 2.74563 cumulative IPC: 2.74563 (Simulation time: 0 hr 4 min 16 sec) 
+Heartbeat CPU 0 instructions: 120000004 cycles: 43705804 heartbeat IPC: 2.74564 cumulative IPC: 2.74563 (Simulation time: 0 hr 4 min 39 sec) 
+Heartbeat CPU 0 instructions: 130000003 cycles: 47347956 heartbeat IPC: 2.74563 cumulative IPC: 2.74563 (Simulation time: 0 hr 5 min 1 sec) 
+Heartbeat CPU 0 instructions: 140000000 cycles: 50990081 heartbeat IPC: 2.74565 cumulative IPC: 2.74563 (Simulation time: 0 hr 5 min 24 sec) 
+Heartbeat CPU 0 instructions: 150000000 cycles: 54632220 heartbeat IPC: 2.74564 cumulative IPC: 2.74563 (Simulation time: 0 hr 5 min 47 sec) 
+Heartbeat CPU 0 instructions: 160000001 cycles: 58274353 heartbeat IPC: 2.74564 cumulative IPC: 2.74563 (Simulation time: 0 hr 6 min 10 sec) 
+Heartbeat CPU 0 instructions: 170000000 cycles: 61916493 heartbeat IPC: 2.74564 cumulative IPC: 2.74563 (Simulation time: 0 hr 6 min 32 sec) 
+Heartbeat CPU 0 instructions: 180000002 cycles: 65558625 heartbeat IPC: 2.74565 cumulative IPC: 2.74563 (Simulation time: 0 hr 6 min 55 sec) 
+Heartbeat CPU 0 instructions: 190000001 cycles: 69200752 heartbeat IPC: 2.74565 cumulative IPC: 2.74564 (Simulation time: 0 hr 7 min 18 sec) 
+Heartbeat CPU 0 instructions: 200000000 cycles: 72842900 heartbeat IPC: 2.74563 cumulative IPC: 2.74563 (Simulation time: 0 hr 7 min 41 sec) 
+Heartbeat CPU 0 instructions: 210000003 cycles: 76485051 heartbeat IPC: 2.74563 cumulative IPC: 2.74563 (Simulation time: 0 hr 8 min 3 sec) 
+Heartbeat CPU 0 instructions: 220000003 cycles: 80127186 heartbeat IPC: 2.74564 cumulative IPC: 2.74564 (Simulation time: 0 hr 8 min 26 sec) 
+Heartbeat CPU 0 instructions: 230000002 cycles: 83769331 heartbeat IPC: 2.74563 cumulative IPC: 2.74564 (Simulation time: 0 hr 8 min 49 sec) 
+^CCaught signal: 2
+ishaan@ishaan-ASUS-TUF-Gaming-A15-FA506IC-FA566IC:~/Documents/GitHub$ PA2-race-of-the-prefetcher/bin/champsim --warmup_instructions 25000000 --simulation_instructions 25000000 pa2_files/603.bwaves_s-1740B.champsimtra
+ce.xz
+
+*** ChampSim Multicore Out-of-Order Simulator ***
+
+Warmup Instructions: 25000000
+Simulation Instructions: 25000000
+Number of CPUs: 1
+Off-chip DRAM Size: 4 GiB Channels: 1 Width: 64-bit Data Rate: 3200 MT/s
+
+VirtualMemory physical capacity: 8588881920 num_ppages: 2096895
+VirtualMemory page size: 4096 log2_page_size: 12
+
+CPU 0 runs pa2_files/603.bwaves_s-1740B.champsimtrace.xz
+CPU 0 Bimodal branch predictor
+Basic BTB sets: 1024 ways: 8 indirect buffer size: 4096 RAS size: 64
+cpu0_L2C IP-based stride prefetcher
+WARNING: The extended signature CACHE::prefetch_line(ip, base_addr, pf_addr, fill_this_level, prefetch_metadata) is deprecated.
+WARNING: Use CACHE::prefetch_line(pf_addr, fill_this_level, prefetch_metadata) instead.
+Heartbeat CPU 0 instructions: 10000001 cycles: 3642288 heartbeat IPC: 2.74553 cumulative IPC: 2.74553 (Simulation time: 0 hr 0 min 23 sec) 
+Heartbeat CPU 0 instructions: 20000001 cycles: 7284434 heartbeat IPC: 2.74563 cumulative IPC: 2.74558 (Simulation time: 0 hr 0 min 46 sec) 
+
+Warmup complete CPU 0 instructions: 25000001 cycles: 9105488 (Simulation time: 0 hr 0 min 58 sec) 
+
+Heartbeat CPU 0 instructions: 30000003 cycles: 23444964 heartbeat IPC: 0.618792 cumulative IPC: 0.348688 (Simulation time: 0 hr 1 min 40 sec) 
+Heartbeat CPU 0 instructions: 40000001 cycles: 52118232 heartbeat IPC: 0.348757 cumulative IPC: 0.348734 (Simulation time: 0 hr 3 min 4 sec) 
+Heartbeat CPU 0 instructions: 50000001 cycles: 80779581 heartbeat IPC: 0.348902 cumulative IPC: 0.348801 (Simulation time: 0 hr 4 min 26 sec) 
+Finished CPU 0 instructions: 25000000 cycles: 71674093 cumulative IPC: 0.348801 (Simulation time: 0 hr 4 min 26 sec) 
+
+ChampSim completed all CPUs
+
+Region of Interest Statistics
+
+CPU 0 cumulative IPC: 0.348801 instructions: 25000000 cycles: 71674093
+cpu0_DTLB TOTAL     ACCESS:    7858423  HIT:    7829222  MISS:      29201
+cpu0_DTLB LOAD      ACCESS:    7302891  HIT:    7278556  MISS:      24335
+cpu0_DTLB RFO       ACCESS:     555532  HIT:     550666  MISS:       4866
+cpu0_DTLB PREFETCH  ACCESS:          0  HIT:          0  MISS:          0
+cpu0_DTLB WRITEBACK ACCESS:          0  HIT:          0  MISS:          0
+cpu0_DTLB TRANSLATION ACCESS:          0  HIT:          0  MISS:          0
+cpu0_DTLB PREFETCH  REQUESTED:          0  ISSUED:          0  USEFUL:          0  USELESS:          0
+cpu0_DTLB AVERAGE MISS LATENCY: 73.6838 cycles
+cpu0_ITLB TOTAL     ACCESS:    2203851  HIT:    2203851  MISS:          0
+cpu0_ITLB LOAD      ACCESS:    2203851  HIT:    2203851  MISS:          0
+cpu0_ITLB RFO       ACCESS:          0  HIT:          0  MISS:          0
+cpu0_ITLB PREFETCH  ACCESS:          0  HIT:          0  MISS:          0
+cpu0_ITLB WRITEBACK ACCESS:          0  HIT:          0  MISS:          0
+cpu0_ITLB TRANSLATION ACCESS:          0  HIT:          0  MISS:          0
+cpu0_ITLB PREFETCH  REQUESTED:          0  ISSUED:          0  USEFUL:          0  USELESS:          0
+cpu0_ITLB AVERAGE MISS LATENCY: -nan cycles
+cpu0_STLB TOTAL     ACCESS:      29201  HIT:      21777  MISS:       7424
+cpu0_STLB LOAD      ACCESS:      24335  HIT:      17101  MISS:       7234
+cpu0_STLB RFO       ACCESS:       4866  HIT:       4676  MISS:        190
+cpu0_STLB PREFETCH  ACCESS:          0  HIT:          0  MISS:          0
+cpu0_STLB WRITEBACK ACCESS:          0  HIT:          0  MISS:          0
+cpu0_STLB TRANSLATION ACCESS:          0  HIT:          0  MISS:          0
+cpu0_STLB PREFETCH  REQUESTED:          0  ISSUED:          0  USEFUL:          0  USELESS:          0
+cpu0_STLB AVERAGE MISS LATENCY: 253.634 cycles
+cpu0_L1D TOTAL     ACCESS:    7902455  HIT:    7402203  MISS:     500252
+cpu0_L1D LOAD      ACCESS:    6505962  HIT:    6018335  MISS:     487627
+cpu0_L1D RFO       ACCESS:    1389069  HIT:    1376888  MISS:      12181
+cpu0_L1D PREFETCH  ACCESS:          0  HIT:          0  MISS:          0
+cpu0_L1D WRITEBACK ACCESS:          0  HIT:          0  MISS:          0
+cpu0_L1D TRANSLATION ACCESS:       7424  HIT:       6980  MISS:        444
+cpu0_L1D PREFETCH  REQUESTED:          0  ISSUED:          0  USEFUL:          0  USELESS:          0
+cpu0_L1D AVERAGE MISS LATENCY: 1162.39 cycles
+cpu0_L2C TOTAL     ACCESS:    1562830  HIT:    1061214  MISS:     501616
+cpu0_L2C LOAD      ACCESS:     487627  HIT:      24499  MISS:     463128
+cpu0_L2C RFO       ACCESS:      12181  HIT:          0  MISS:      12181
+cpu0_L2C PREFETCH  ACCESS:    1050211  HIT:    1023921  MISS:      26290
+cpu0_L2C WRITEBACK ACCESS:      12367  HIT:      12367  MISS:          0
+cpu0_L2C TRANSLATION ACCESS:        444  HIT:        427  MISS:         17
+cpu0_L2C PREFETCH  REQUESTED:    1142061  ISSUED:    1090105  USEFUL:      26287  USELESS:          6
+cpu0_L2C AVERAGE MISS LATENCY: 1197.78 cycles
+LLC TOTAL     ACCESS:     545275  HIT:      42314  MISS:     502961
+LLC LOAD      ACCESS:     463128  HIT:        241  MISS:     462887
+LLC RFO       ACCESS:      12181  HIT:          0  MISS:      12181
+LLC PREFETCH  ACCESS:      57743  HIT:      29869  MISS:      27874
+LLC WRITEBACK ACCESS:      12206  HIT:      12202  MISS:          4
+LLC TRANSLATION ACCESS:         17  HIT:          2  MISS:         15
+LLC PREFETCH  REQUESTED:          0  ISSUED:          0  USEFUL:          0  USELESS:          0
+LLC AVERAGE MISS LATENCY: 1218.2 cycles
+
+DRAM Statistics
+ CHANNEL 0
+ RQ ROW_BUFFER_HIT:         14  ROW_BUFFER_MISS:     502943
+ DBUS AVG_CONGESTED_CYCLE:    3.99947
+ WQ ROW_BUFFER_HIT:       2883  ROW_BUFFER_MISS:       9584  FULL:          0
+
+
+CPU 0 Branch Prediction Accuracy: 62.4635% MPKI: 9.3696 Average ROB Occupancy at Mispredict: 291.166
+Branch type MPKI
+BRANCH_DIRECT_JUMP: 0
+BRANCH_INDIRECT: 0
+BRANCH_CONDITIONAL: 9.3696
+BRANCH_DIRECT_CALL: 0
+BRANCH_INDIRECT_CALL: 0
+BRANCH_RETURN: 0
+
+ishaan@ishaan-ASUS-TUF-Gaming-A15-FA506IC-FA566IC:~/Documents/GitHub$ ^C
+ishaan@ishaan-ASUS-TUF-Gaming-A15-FA506IC-FA566IC:~/Documents/GitHub$ PA2-race-of-the-prefetcher/bin/champsim --warmup_instructions 25000000 --simulation_instructions 25000000 pa2_files/bc-0.trace.gz
+
+*** ChampSim Multicore Out-of-Order Simulator ***
+
+Warmup Instructions: 25000000
+Simulation Instructions: 25000000
+Number of CPUs: 1
+Off-chip DRAM Size: 4 GiB Channels: 1 Width: 64-bit Data Rate: 3200 MT/s
+
+VirtualMemory physical capacity: 8588881920 num_ppages: 2096895
+VirtualMemory page size: 4096 log2_page_size: 12
+
+CPU 0 runs pa2_files/bc-0.trace.gz
+CPU 0 Bimodal branch predictor
+Basic BTB sets: 1024 ways: 8 indirect buffer size: 4096 RAS size: 64
+cpu0_L2C IP-based stride prefetcher
+WARNING: The extended signature CACHE::prefetch_line(ip, base_addr, pf_addr, fill_this_level, prefetch_metadata) is deprecated.
+WARNING: Use CACHE::prefetch_line(pf_addr, fill_this_level, prefetch_metadata) instead.
+Heartbeat CPU 0 instructions: 10000002 cycles: 3203425 heartbeat IPC: 3.12166 cumulative IPC: 3.12166 (Simulation time: 0 hr 0 min 23 sec) 
+Heartbeat CPU 0 instructions: 20000000 cycles: 5712248 heartbeat IPC: 3.98593 cumulative IPC: 3.50125 (Simulation time: 0 hr 0 min 38 sec) 
+
+Warmup complete CPU 0 instructions: 25000003 cycles: 6963679 (Simulation time: 0 hr 0 min 46 sec) 
+
+Heartbeat CPU 0 instructions: 30000001 cycles: 44180577 heartbeat IPC: 0.259954 cumulative IPC: 0.134348 (Simulation time: 0 hr 1 min 14 sec) 
+Heartbeat CPU 0 instructions: 40000002 cycles: 121084616 heartbeat IPC: 0.130032 cumulative IPC: 0.13144 (Simulation time: 0 hr 2 min 12 sec) 
+Heartbeat CPU 0 instructions: 50000002 cycles: 197919904 heartbeat IPC: 0.130149 cumulative IPC: 0.13092 (Simulation time: 0 hr 3 min 10 sec) 
+Finished CPU 0 instructions: 25000004 cycles: 190956226 cumulative IPC: 0.13092 (Simulation time: 0 hr 3 min 10 sec) 
+
+ChampSim completed all CPUs
+
+Region of Interest Statistics
+
+CPU 0 cumulative IPC: 0.13092 instructions: 25000004 cycles: 190956226
+cpu0_DTLB TOTAL     ACCESS:    5782251  HIT:    5048469  MISS:     733782
+cpu0_DTLB LOAD      ACCESS:    4554657  HIT:    4076669  MISS:     477988
+cpu0_DTLB RFO       ACCESS:    1227594  HIT:     971800  MISS:     255794
+cpu0_DTLB PREFETCH  ACCESS:          0  HIT:          0  MISS:          0
+cpu0_DTLB WRITEBACK ACCESS:          0  HIT:          0  MISS:          0
+cpu0_DTLB TRANSLATION ACCESS:          0  HIT:          0  MISS:          0
+cpu0_DTLB PREFETCH  REQUESTED:          0  ISSUED:          0  USEFUL:          0  USELESS:          0
+cpu0_DTLB AVERAGE MISS LATENCY: 13.8622 cycles
+cpu0_ITLB TOTAL     ACCESS:    3107161  HIT:    3107161  MISS:          0
+cpu0_ITLB LOAD      ACCESS:    3107161  HIT:    3107161  MISS:          0
+cpu0_ITLB RFO       ACCESS:          0  HIT:          0  MISS:          0
+cpu0_ITLB PREFETCH  ACCESS:          0  HIT:          0  MISS:          0
+cpu0_ITLB WRITEBACK ACCESS:          0  HIT:          0  MISS:          0
+cpu0_ITLB TRANSLATION ACCESS:          0  HIT:          0  MISS:          0
+cpu0_ITLB PREFETCH  REQUESTED:          0  ISSUED:          0  USEFUL:          0  USELESS:          0
+cpu0_ITLB AVERAGE MISS LATENCY: -nan cycles
+cpu0_L1I TOTAL     ACCESS:         86  HIT:         86  MISS:          0
+cpu0_L1I LOAD      ACCESS:         86  HIT:         86  MISS:          0
+cpu0_L1I RFO       ACCESS:          0  HIT:          0  MISS:          0
+cpu0_L1I PREFETCH  ACCESS:          0  HIT:          0  MISS:          0
+cpu0_L1I WRITEBACK ACCESS:          0  HIT:          0  MISS:          0
+cpu0_L1I TRANSLATION ACCESS:          0  HIT:          0  MISS:          0
+cpu0_L1I PREFETCH  REQUESTED:          0  ISSUED:          0  USEFUL:          0  USELESS:          0
+cpu0_L1I AVERAGE MISS LATENCY: -nan cycles
+cpu0_STLB TOTAL     ACCESS:     733782  HIT:     397124  MISS:     336658
+cpu0_STLB LOAD      ACCESS:     477988  HIT:     310201  MISS:     167787
+cpu0_STLB RFO       ACCESS:     255794  HIT:      86923  MISS:     168871
+cpu0_STLB PREFETCH  ACCESS:          0  HIT:          0  MISS:          0
+cpu0_STLB WRITEBACK ACCESS:          0  HIT:          0  MISS:          0
+cpu0_STLB TRANSLATION ACCESS:          0  HIT:          0  MISS:          0
+cpu0_STLB PREFETCH  REQUESTED:          0  ISSUED:          0  USEFUL:          0  USELESS:          0
+cpu0_STLB AVERAGE MISS LATENCY: 10.4127 cycles
+cpu0_L1D TOTAL     ACCESS:    6849517  HIT:    4762822  MISS:    2086695
+cpu0_L1D LOAD      ACCESS:    5223151  HIT:    3148882  MISS:    2074269
+cpu0_L1D RFO       ACCESS:    1299277  HIT:    1288245  MISS:      11032
+cpu0_L1D PREFETCH  ACCESS:          0  HIT:          0  MISS:          0
+cpu0_L1D WRITEBACK ACCESS:          0  HIT:          0  MISS:          0
+cpu0_L1D TRANSLATION ACCESS:     327089  HIT:     325695  MISS:       1394
+cpu0_L1D PREFETCH  REQUESTED:          0  ISSUED:          0  USEFUL:          0  USELESS:          0
+cpu0_L1D AVERAGE MISS LATENCY: 174.112 cycles
+cpu0_L2C TOTAL     ACCESS:    3327467  HIT:    1284743  MISS:    2042724
+cpu0_L2C LOAD      ACCESS:    2074269  HIT:     216511  MISS:    1857758
+cpu0_L2C RFO       ACCESS:      11032  HIT:        125  MISS:      10907
+cpu0_L2C PREFETCH  ACCESS:     591951  HIT:     417952  MISS:     173999
+cpu0_L2C WRITEBACK ACCESS:     648821  HIT:     648808  MISS:         13
+cpu0_L2C TRANSLATION ACCESS:       1394  HIT:       1347  MISS:         47
+cpu0_L2C PREFETCH  REQUESTED:     619034  ISSUED:     602971  USEFUL:      43324  USELESS:     131186
+cpu0_L2C AVERAGE MISS LATENCY: 192.742 cycles
+LLC TOTAL     ACCESS:    2677574  HIT:    1245385  MISS:    1432189
+LLC LOAD      ACCESS:    1857758  HIT:     591124  MISS:    1266634
+LLC RFO       ACCESS:      10907  HIT:        481  MISS:      10426
+LLC PREFETCH  ACCESS:     174111  HIT:      19083  MISS:     155028
+LLC WRITEBACK ACCESS:     634751  HIT:     634686  MISS:         65
+LLC TRANSLATION ACCESS:         47  HIT:         11  MISS:         36
+LLC PREFETCH  REQUESTED:          0  ISSUED:          0  USEFUL:          0  USELESS:          0
+LLC AVERAGE MISS LATENCY: 245.035 cycles
+
+DRAM Statistics
+ CHANNEL 0
+ RQ ROW_BUFFER_HIT:      68450  ROW_BUFFER_MISS:    1363009
+ DBUS AVG_CONGESTED_CYCLE:    3.95862
+ WQ ROW_BUFFER_HIT:       1039  ROW_BUFFER_MISS:     547505  FULL:          0
+
+
+CPU 0 Branch Prediction Accuracy: 81.1279% MPKI: 35.6282 Average ROB Occupancy at Mispredict: 22.0616
+Branch type MPKI
+BRANCH_DIRECT_JUMP: 0
+BRANCH_INDIRECT: 0
+BRANCH_CONDITIONAL: 35.6282
+BRANCH_DIRECT_CALL: 0
+BRANCH_INDIRECT_CALL: 0
+BRANCH_RETURN: 0

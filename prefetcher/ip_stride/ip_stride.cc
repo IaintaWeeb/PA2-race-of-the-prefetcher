@@ -4,7 +4,7 @@
 
 #include "cache.h"
 
-constexpr int PREFETCH_DEGREE = 3;
+constexpr int PREFETCH_DEGREE = 5;
 
 struct tracker_entry {
   uint64_t ip = 0;              // the IP we're tracking
