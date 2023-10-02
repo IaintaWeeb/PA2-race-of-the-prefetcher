@@ -46,7 +46,7 @@ We had to implement a 'Stream Prefetcher' with a fixed stream size of 64.
 
 - Degree = 1, Distance = 4 provides the best speedup. All the parameters for it are plotted below:
  
-!(Best)[task2_2.png]
+![Best](task2_2.png)
 # Task 3: Prefetch Throttling
 
 Our whole model of dynamically controlling Prefetch parameters depend on 2 metrics (the paper suggested 3 but cache pollution was hard to implement)
