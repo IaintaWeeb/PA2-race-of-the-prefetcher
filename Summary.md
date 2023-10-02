@@ -18,11 +18,11 @@ Once a stride pattern is detected, the prefetcher proactively fetches data from 
 ## Plots
 Here are the plots of speedups for varying degrees.
 
-![speedups]()
+![speedups](task1_1.png)
 
 Degree = 1 provides the best speedup. ALl the parameters for degree = 1 are plotted below:
 
-![degree 1 params]()
+![degree 1 params](task1_2.png)
 
 
 
