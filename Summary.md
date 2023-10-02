@@ -40,7 +40,7 @@ We had to implement a 'Stream Prefetcher' with a fixed stream size of 64.
 
 - Here are the plots of the overall speedup across all traces, comparing it to the baseline without prefetching.
 
-![Overall Speedup](path/to/overall_speedup_plot.png)
+![Overall Speedup](task2_1.png)
 
 ### Metrics Analysis
 
@@ -149,7 +149,7 @@ Prefetch degree is given a range from 1 to 7 and is directly correlated with agg
 Prefetch degree+=aggression update
 With min and max bound fulfilled.
 
-# Task 2: Stream + stride Prefetcher Design and Analysis
+# Task 4 [BONUS]: Stream + stride Prefetcher Design and Analysis
 
 We had to implement a 'Stream + Stride Prefetcher' with a fixed stream size of 64.
 
