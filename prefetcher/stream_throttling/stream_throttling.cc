@@ -157,6 +157,7 @@ void CACHE::prefetcher_cycle_operate() {
   //Updating for average calculation
   prefetch_degr_total+=PREFETCH_DEGREE;
   prefetch_dist_total+=PREFETCH_DISTANCE;
+  no_instructions++;
 }
 
 void CACHE::prefetcher_final_stats() {
