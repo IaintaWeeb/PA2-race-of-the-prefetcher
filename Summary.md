@@ -78,6 +78,10 @@ Prefetch degree is given a range from 1 to 7 and is directly correlated with agg
 Prefetch degree+=aggression update
 With min and max bound fulfilled.
 
+### Plots 
+Here are the plots with respect to prefetcher perfomance of stream and ip_stride.
+![plt](task3.png)
+
 # Task 4 [BONUS]: Stream + stride Prefetcher Design and Analysis
 
 We had to implement a 'Stream + Stride Prefetcher' with a fixed stream size of 64.
