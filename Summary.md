@@ -70,6 +70,113 @@ We had to implement a 'Stream Prefetcher' with a fixed stream size of 64.
 
   - Prefetch Degree: X
   - Prefetch Distance: Y
+ 
+# Task 2: Stream Prefetcher Design and Analysis
+
+We had to implement a 'Stream Prefetcher' with a fixed stream size of 64.
+
+## Implementation Details
+
+- **Warm-up and Simulation**: We had to run the simulation with the following settings:
+  - `warmup_instructions = 25,000,000`
+  - `simulation_instructions = 25,000,000`
+
+## Analysis and Plots
+
+### Overall Speedup
+
+- Here are the plots of the overall speedup across all traces, comparing it to the baseline without prefetching.
+
+![Overall Speedup](path/to/overall_speedup_plot.png)
+
+### Metrics Analysis
+
+- Analyze and plot the following metrics for all traces:
+
+  - Speedup
+
+  ![Speedup](path/to/speedup_plot.png)
+
+  - L1D MPKI (Misses Per Kilo Instructions)
+
+  ![L1D MPKI](path/to/l1d_mpki_plot.png)
+
+  - L2C MPKI (Misses Per Kilo Instructions)
+
+  ![L2C MPKI](path/to/l2c_mpki_plot.png)
+
+  - Prefetcher Accuracy (%)
+
+  ![Prefetcher Accuracy](path/to/prefetcher_accuracy_plot.png)
+
+- Compare these metrics to the baseline (no prefetching).
+
+### Optimal Prefetching Configuration
+
+- Identify the prefetch degree and distance combination that yields the highest speedup.
+
+  - Prefetch Degree: X
+  - Prefetch Distance: Y
+ 
+# Task 3: Prefetch Throttling
+
+Our whole model of dynamically controlling Prefetch parameters depend on 2 metrics (the paper suggested 3 but cache pollution was hard to implement)
+PF Accuracy: We calculated it by pf_useful/(pf_useful+pf_useless) even tho the problem statement stated it to b pf_useful/ pf_issued as our bounds were expecting high values which were suggested by the paper. So this value is updated on every cycle
+PF Lateness: For this we needed late prefetches, this was hard to implement on the pf.cc code therefore we had to introduce a new variable in cache.h called pf_late which was incremented in cache.cc on MSHR hit but a cache miss.
+Depending on these 2 values we have created a mapping similar to the paper.
+
+
+|  Accuracy   |  Lateness  |  Aggression update |
+--------------|------------|--------------------|
+|  low      	|  Not late  |  -1        	      |
+|  low      	|  late   	 |  1         	      |
+|  mid      	|  Not late  |  0         	      |
+|  mid      	|  late      |  1         	      |
+|  high     	|  Not late  |  0         	      |
+|  high     	|  late   	 |  1         	      |
+
+### How to decide low/mid/high/late/not late?
+I used the threshold values given in the paper and tweaked them a bit. The variables PF_Acc_hi/lo and PF_late_TH represent them.
+
+### State of aggression are defined by 
+Prefetch degree in ip_stride_throttling
+Prefetch degree and distance in stream_throttling
+
+State is updated every cycle.
+
+### IP Stride Throttling
+Prefetch degree is given a range from 1 to 7 and is directly correlated with aggression update.
+Prefetch degree+=aggression update
+With min and max bound fulfilled.
+
+# Task 2: Stream + stride Prefetcher Design and Analysis
+
+We had to implement a 'Stream + Stride Prefetcher' with a fixed stream size of 64.
+
+## Implementation Details
+
+- **Warm-up and Simulation**: We had to run the simulation with the following settings:
+  - `warmup_instructions = 25,000,000`
+  - `simulation_instructions = 25,000,000`
+
+## Analysis and Plots
+
+### Overall Speedup
+
+- Here are the plots of the overall speedup across all traces, comparing it to the baseline without prefetching.
+
+![Overall Speedup](task4_1.png)
+
+
+
+### Optimal Prefetching Configuration
+
+- Identify the prefetch degree and distance combination that yields the highest speedup.
+
+  - Prefetch Degree: 1
+  - Prefetch Distance: 4
+ 
+
 
 
 
