@@ -1,7 +1,7 @@
 # Task 1: IP Stride Prefetcher 
 
 ## Description
-In this task, we understand the IP Stride Prefetcher, a hardware prefetcher designed to improve cache hierarchy performance in computer systems. The prefetcher detects regular patterns in memory addresses accessed by instructions, predicts future memory accesses, and loads data into the cache before it's explicitly requested by the CPU.
+In this task, we understand the IP Stride Prefetcher, a hardware prefetcher designed to improve cache hierarchy performance in computer systems. The prefetcher detects regular patterns in memory addresses accessed by instructions, predicts future memory accesses, and loads data into the cache before it's explicitly requested by the CPU. Note that there was an error in code provided by the TA, due to lack to the time all the data here is according to the erroreneous code. Our team has already contacted the TA about this and has told us to just use the old (errorenous) code.
 
 ## Understanding IP Stride Prefetcher
 
@@ -26,11 +26,25 @@ Degree = 1 provides the best speedup. All the parameters for degree = 1 are plot
 
 # Task 2: Stream Prefetcher Design and Analysis
 
-We had to implement a 'Stream Prefetcher' with a fixed stream size of 64.
+We had to implement a 'Stream Prefetcher' with a fixed stream size of 64.  Note that there was an error in code provided by the TA, due to lack to the time all the data here is according to the erroreneous code. Our team has already contacted the TA about this and has told us to just use the old (errorenous) code.
 
 ## Implementation Details
+The stream prefetcher is able to keep track of multiple dif-
+ferent access streams. For each tracked access stream, a stream
+tracking entry is created in the stream prefetcher. Each tracking
+entry can be in one of four different states:
 
-- **Warm-up and Simulation**: We had to run the simulation with the following settings:
+- **Invalid**: A tracking entry is not alloted a stream
+- **Allocation**: A tracking entry is alloted a stream on a demand L2 miss
+- **Training**: he prefetcher trains the direction (ascending or
+descending) of the stream based on the next two L2 misses
+that occur +/- 16 cache blocks from the first miss.4 If the
+next two accesses in the stream are to ascending (descend-
+ing) addresses, the direction of the tracking entry is set to 1
+(0) and the entry transitions to Monitor and Request state.
+- **Monitor and Request**
+
+ **Warm-up and Simulation**: We had to run the simulation with the following settings:
   - `warmup_instructions = 25,000,000`
   - `simulation_instructions = 25,000,000`
 
@@ -84,11 +98,12 @@ Here are the plots with respect to prefetcher perfomance of stream and ip_stride
 
 # Task 4 [BONUS]: Stream + stride Prefetcher Design and Analysis
 
-We had to implement a 'Stream + Stride Prefetcher' with a fixed stream size of 64.
+We had to implement a 'Stream + Stride Prefetcher' with a fixed stream size of 64.  Note that there was an error in code provided by the TA, due to lack to the time all the data here is according to the erroreneous code. Our team has already contacted the TA about this and he has told us to just use the old (errorenous) code.
 
 ## Implementation Details
+The implementation is similar to Task 2. But here training is complete when both stride and Stream is trained 
 
-- **Warm-up and Simulation**: We had to run the simulation with the following settings:
+ **Warm-up and Simulation**: We had to run the simulation with the following settings:
   - `warmup_instructions = 25,000,000`
   - `simulation_instructions = 25,000,000`
 
