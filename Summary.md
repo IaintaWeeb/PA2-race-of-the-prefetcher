@@ -54,13 +54,15 @@ ing) addresses, the direction of the tracking entry is set to 1
 
 - Here are the plots of the overall speedup across all traces, comparing it to the baseline without prefetching.
 
-![Overall Speedup](task2_1.png)
+![Overall Speedup](task2_speedup.png)
 
 ### Optimal Prefetching Configuration
 
 - Degree = 1, Distance = 4 provides the best speedup. All the parameters for it are plotted below:
  
-![Best](task2_2.png)
+![MPKI for optimal parameters ](task2_mpki.png)
+![Accuracy](task2_accuracy.png)
+
 # Task 3: Prefetch Throttling
 
 Our whole model of dynamically controlling Prefetch parameters depend on 2 metrics (the paper suggested 3 but cache pollution was hard to implement). Please note that the implementation required changes in the Champsim interface & therefore to avoid any conflict we have made a different branch for it.
