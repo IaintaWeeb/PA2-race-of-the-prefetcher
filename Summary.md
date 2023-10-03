@@ -63,7 +63,7 @@ ing) addresses, the direction of the tracking entry is set to 1
 ![Best](task2_2.png)
 # Task 3: Prefetch Throttling
 
-Our whole model of dynamically controlling Prefetch parameters depend on 2 metrics (the paper suggested 3 but cache pollution was hard to implement)
+Our whole model of dynamically controlling Prefetch parameters depend on 2 metrics (the paper suggested 3 but cache pollution was hard to implement). Please note that the implementation required changes in the Champsim interface & therefore to avoid any conflict we have made a different branch for it.
 PF Accuracy: We calculated it by pf_useful/(pf_useful+pf_useless) even tho the problem statement stated it to b pf_useful/ pf_issued as our bounds were expecting high values which were suggested by the paper. So this value is updated on every cycle
 PF Lateness: For this we needed late prefetches, this was hard to implement on the pf.cc code therefore we had to introduce a new variable in cache.h called pf_late which was incremented in cache.cc on MSHR hit but a cache miss.
 Depending on these 2 values we have created a mapping similar to the paper.
