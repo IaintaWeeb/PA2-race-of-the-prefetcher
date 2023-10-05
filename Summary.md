@@ -18,11 +18,14 @@ Once a stride pattern is detected, the prefetcher proactively fetches data from 
 ## Plots
 Here are the plots of speedups for varying degrees.
 
-![speedups](task1_1.png)
+![speedups](task1_speedup.png)
 
 Degree = 1 provides the best speedup. All the parameters for degree = 1 are plotted below:
 
-![degree 1 params](task1_2.png)
+![Accuracy](task1_Accuracy.png)
+![L1D MPKI](task1_l1d_mpki.png)
+![L2C MPKI](task1_l2c_mpki.png)
+
 
 # Task 2: Stream Prefetcher Design and Analysis
 
